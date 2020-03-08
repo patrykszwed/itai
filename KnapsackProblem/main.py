@@ -26,8 +26,7 @@ def get_good_solution(task):
             inner_iterator += 1
         population = new_population
         outer_iterator += 1
-    best_individual = population.best_individual()
-    return best_individual
+    return population.best_individual()
 
 
 def main():
