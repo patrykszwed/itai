@@ -12,7 +12,7 @@ from crossover import crossover
 
 def get_good_solution(task):
     population = init_population(task, POPULATION_SIZE)
-    print('Initial value of the knapsack = ', population.individuals[0].evaluate())
+    print('Initial value of the knapsack =', population.individuals[0].evaluate())
     outer_iterator = 0
     while outer_iterator < MAX_ITERATIONS:
         inner_iterator = 0
@@ -35,8 +35,8 @@ def main():
     task = read(FILE_NAME)
     start_time = time.time()
     good_solution = get_good_solution(task)
-    print('Final value of the knapsack = ', good_solution.evaluate())
-    print('Execution time = ', (time.time() - start_time), ' seconds')
+    print('Final value of the knapsack =', good_solution.evaluate())
+    print('Execution time =', round(time.time() - start_time, 2), 'seconds')
 
 
 main()
