@@ -14,7 +14,6 @@ size - population size
 
 def init_population(task, size):
     n_items = task.n_items
-    print('n_items = ', n_items)
     init_pop = np.zeros(n_items)
 
     for index in range(size):

@@ -16,7 +16,6 @@ class Individual:
     items_array = np.empty(n_items)
 
     def __init__(self, task, items_array):
-        # print('Create new individual with items_array of length = ', len(items_array))
         self.n_items = task.n_items
         self.items_array = items_array
         self.task = task
