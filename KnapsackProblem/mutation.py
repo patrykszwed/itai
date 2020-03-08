@@ -4,10 +4,7 @@ from helpers import get_random_indexes_from_array
 
 def mutate_selected_indexes(items_array, indexes_to_mutate):
     for index, individual_index in enumerate(indexes_to_mutate):
-        if items_array[individual_index] == 1:
-            items_array[individual_index] = 0
-        else:
-            items_array[individual_index] = 1
+        items_array[individual_index] = not items_array[individual_index]
 
 
 def mutate(individual, mutation_rate):
