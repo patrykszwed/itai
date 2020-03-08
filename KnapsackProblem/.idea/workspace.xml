@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a4e9b2f-9e6a-4f5f-a204-2be96392de4a" name="Default Changelist" comment="" />
+    <list default="true" id="6a4e9b2f-9e6a-4f5f-a204-2be96392de4a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Individual.py" beforeDir="false" afterPath="$PROJECT_DIR$/Individual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population.py" beforeDir="false" afterPath="$PROJECT_DIR$/Population.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crossover.py" beforeDir="false" afterPath="$PROJECT_DIR$/crossover.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init_population.py" beforeDir="false" afterPath="$PROJECT_DIR$/init_population.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mutation.py" beforeDir="false" afterPath="$PROJECT_DIR$/mutation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_file.csv" beforeDir="false" afterPath="$PROJECT_DIR$/my_file.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament.py" afterDir="false" />
+    </list>
     <list id="92e884c4-2bb5-44bd-86df-70c4fab9231f" name="Mutation function change in checks for 0/1 values" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +114,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583439729580</updated>
-      <workItem from="1583439748357" duration="26849000" />
+      <workItem from="1583439748357" duration="34574000" />
     </task>
     <task id="LOCAL-00001" summary="Debugs cleanup and small fixes to printed texts">
       <created>1583674076249</created>
@@ -139,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583675495612</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Removed unnecessary variable in main.py">
+      <created>1583675714905</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1583675714905</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,40 +187,41 @@
     <MESSAGE value="Removed unnecessary spaces and added round() for the execution time." />
     <MESSAGE value="Mutation function change in checks for 0/1 values" />
     <MESSAGE value="Bugfix for the tournament.py get_best_individual()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bugfix for the tournament.py get_best_individual()" />
+    <MESSAGE value="Removed unnecessary variable in main.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary variable in main.py" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1583441607165">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Notifications/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583441607165" />
-    <state x="552" y="115" key="CommitChangelistDialog2" timestamp="1583675494785">
+    <state x="552" y="115" key="CommitChangelistDialog2" timestamp="1583675714049">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="115" key="CommitChangelistDialog2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675494785" />
+    <state x="552" y="115" key="CommitChangelistDialog2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675714049" />
     <state x="193" y="86" key="DiffContextDialog" timestamp="1583675072533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="193" y="86" key="DiffContextDialog/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675072533" />
-    <state width="1877" height="328" key="GridCell.Tab.0.bottom" timestamp="1583675533769">
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom" timestamp="1583687566398">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.bottom/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675533769" />
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583687566398" />
     <state width="1237" height="121" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583495012289" />
-    <state width="1877" height="328" key="GridCell.Tab.0.center" timestamp="1583675533768">
+    <state width="1877" height="328" key="GridCell.Tab.0.center" timestamp="1583687566397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.center/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675533768" />
+    <state width="1877" height="328" key="GridCell.Tab.0.center/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583687566397" />
     <state width="1237" height="121" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583495012286" />
-    <state width="1877" height="328" key="GridCell.Tab.0.left" timestamp="1583675533768">
+    <state width="1877" height="328" key="GridCell.Tab.0.left" timestamp="1583687566397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.left/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675533768" />
+    <state width="1877" height="328" key="GridCell.Tab.0.left/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583687566397" />
     <state width="1237" height="121" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583495012285" />
-    <state width="1877" height="328" key="GridCell.Tab.0.right" timestamp="1583675533768">
+    <state width="1877" height="328" key="GridCell.Tab.0.right" timestamp="1583687566397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.right/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675533768" />
+    <state width="1877" height="328" key="GridCell.Tab.0.right/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583687566397" />
     <state width="1237" height="121" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583495012286" />
     <state x="373" y="144" key="SettingsEditor" timestamp="1583440211097">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -211,21 +231,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="807" y="436" key="VCS.ChangelistChooser/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675161708" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1583675496782">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1583675717219">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675496782" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675717219" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583675012747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675012747" />
-    <state x="656" y="118" width="607" height="804" key="find.popup" timestamp="1583675048782">
+    <state x="1123" y="101" width="607" height="804" key="find.popup" timestamp="1583685567594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="118" width="607" height="804" key="find.popup/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675048782" />
+    <state x="1123" y="101" width="607" height="804" key="find.popup/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583685567594" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/KnapsackProblem$main.coverage" NAME="main Coverage Results" MODIFIED="1583675533752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KnapsackProblem$main.coverage" NAME="main Coverage Results" MODIFIED="1583687566389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KnapsackProblem$implementation.coverage" NAME="generate Coverage Results" MODIFIED="1583447525891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
