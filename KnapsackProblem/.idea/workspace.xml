@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a4e9b2f-9e6a-4f5f-a204-2be96392de4a" name="Default Changelist" comment="" />
+    <list default="true" id="6a4e9b2f-9e6a-4f5f-a204-2be96392de4a" name="Default Changelist" comment="Mutation function change in checks for 0/1 values">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <list id="92e884c4-2bb5-44bd-86df-70c4fab9231f" name="Mutation function change in checks for 0/1 values" comment="">
+      <change beforePath="$PROJECT_DIR$/my_file.csv" beforeDir="false" afterPath="$PROJECT_DIR$/my_file.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,11 +101,12 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="6a4e9b2f-9e6a-4f5f-a204-2be96392de4a" name="Default Changelist" comment="" />
+      <changelist id="92e884c4-2bb5-44bd-86df-70c4fab9231f" name="Mutation function change in checks for 0/1 values" comment="" />
       <created>1583439729580</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583439729580</updated>
-      <workItem from="1583439748357" duration="26306000" />
+      <workItem from="1583439748357" duration="26584000" />
     </task>
     <task id="LOCAL-00001" summary="Debugs cleanup and small fixes to printed texts">
       <created>1583674076249</created>
@@ -123,11 +129,36 @@
       <option name="project" value="LOCAL" />
       <updated>1583674939533</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Mutation function change in checks for 0/1 values">
+      <created>1583675222032</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583675222032</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_WIDTH">
+                <map>
+                  <entry key="2" value="93" />
+                  <entry key="3" value="126" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Debugs cleanup and small fixes to printed texts" />
@@ -140,38 +171,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Notifications/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583441607165" />
-    <state x="552" y="115" key="CommitChangelistDialog2" timestamp="1583674318885">
+    <state x="552" y="115" key="CommitChangelistDialog2" timestamp="1583675220490">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="115" key="CommitChangelistDialog2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583674318885" />
-    <state width="1877" height="328" key="GridCell.Tab.0.bottom" timestamp="1583674336912">
+    <state x="552" y="115" key="CommitChangelistDialog2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675220490" />
+    <state x="193" y="86" key="DiffContextDialog" timestamp="1583675072533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.bottom/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583674336912" />
+    <state x="193" y="86" key="DiffContextDialog/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675072533" />
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom" timestamp="1583675426970">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675426970" />
     <state width="1237" height="121" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583495012289" />
-    <state width="1877" height="328" key="GridCell.Tab.0.center" timestamp="1583674336912">
+    <state width="1877" height="328" key="GridCell.Tab.0.center" timestamp="1583675426970">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.center/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583674336912" />
+    <state width="1877" height="328" key="GridCell.Tab.0.center/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675426970" />
     <state width="1237" height="121" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583495012286" />
-    <state width="1877" height="328" key="GridCell.Tab.0.left" timestamp="1583674336912">
+    <state width="1877" height="328" key="GridCell.Tab.0.left" timestamp="1583675426970">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.left/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583674336912" />
+    <state width="1877" height="328" key="GridCell.Tab.0.left/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675426970" />
     <state width="1237" height="121" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583495012285" />
-    <state width="1877" height="328" key="GridCell.Tab.0.right" timestamp="1583674336912">
+    <state width="1877" height="328" key="GridCell.Tab.0.right" timestamp="1583675426970">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="328" key="GridCell.Tab.0.right/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583674336912" />
+    <state width="1877" height="328" key="GridCell.Tab.0.right/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675426970" />
     <state width="1237" height="121" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583495012286" />
     <state x="373" y="144" key="SettingsEditor" timestamp="1583440211097">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="373" y="144" key="SettingsEditor/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583440211097" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1583674082269">
+    <state x="807" y="436" key="VCS.ChangelistChooser" timestamp="1583675161708">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583674375520" />
+    <state x="807" y="436" key="VCS.ChangelistChooser/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675161708" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1583675224005">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675224005" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583675012747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -182,7 +221,7 @@
     <state x="656" y="118" width="607" height="804" key="find.popup/-1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1583675048782" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/KnapsackProblem$main.coverage" NAME="main Coverage Results" MODIFIED="1583674336903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KnapsackProblem$main.coverage" NAME="main Coverage Results" MODIFIED="1583675426962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KnapsackProblem$implementation.coverage" NAME="generate Coverage Results" MODIFIED="1583447525891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
