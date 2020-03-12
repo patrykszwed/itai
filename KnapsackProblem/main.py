@@ -62,6 +62,7 @@ def main():
         print('summed_solution = ', summed_solution)
         average_solution = np.true_divide(summed_solution, 5)
         my_label = 'crossover_rate = ', crossover_rate
+        print('average_solution = ', average_solution)
         print('type(generation_indexes) = ', type(generation_indexes))
         print('type(average_solution) = ', type(average_solution))
         plt.plot(generation_indexes, average_solution, label=my_label)
