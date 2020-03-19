@@ -3,19 +3,19 @@ import numpy as np
 
 class Population:
     n_items = 0
-    individuals = []
+    individuals = np.asarray(0)
 
     def __init__(self, n_items=0, individuals=None):
         if individuals is None:
-            individuals = []
+            individuals = np.asarray(0)
         self.n_items = n_items
-        self.individuals = individuals
-        print('POPULATION len(individuals) = ', len(individuals))
-        print('POPULATION individuals  = ', individuals)
-        # print('POPULATION individuals[0].evaluate()  = ', individuals[0].evaluate())
+        self.individuals = np.asarray(individuals)
 
     def add_individual(self, individual_to_add):
         self.individuals = np.append(self.individuals, individual_to_add)
+
+    def set_first_individual(self, individual_to_set):
+        self.individuals[0] = individual_to_set
 
     def best_individual(self):
         best_individual_value = 0

@@ -15,15 +15,12 @@ size - population size
 
 def init_population(task, size):
     n_items = task.n_items
-    init_pop = []
-    print('n_items', n_items)
+    init_pop = np.empty(size, dtype=object)
 
     for individual_index in range(size):
-        items_array = []
+        items_array = np.empty(n_items[0])
         for item_index in range(n_items[0]):
-            items_array.append(random.uniform(0, 1) < PACKING_ITEM_RATE)
-        print('items_array', items_array)
-        init_pop.append(Individual(task, items_array))
-        print('after')
+            items_array[item_index] = random.uniform(0, 1) < PACKING_ITEM_RATE
+        init_pop[individual_index] = Individual(task, items_array)
 
     return Population(n_items, init_pop)

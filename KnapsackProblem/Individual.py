@@ -13,7 +13,7 @@ def get_task_value_to_sum(task, value_to_sum):
 class Individual:
     n_items = 0
     task = 0
-    items_array = []
+    items_array = 0
 
     def __init__(self, task, items_array):
         self.n_items = task.n_items
@@ -21,17 +21,13 @@ class Individual:
         self.task = task
 
     def evaluate(self):
-        print('evaluate')
         if self.get_total_sum_of_value('w_i') >= MAXIMUM_WEIGHT \
                 or self.get_total_sum_of_value('s_i') >= MAXIMUM_SIZE:
-            print('TOO ')
             return 0
         return self.get_total_sum_of_value('c_i')
 
     def get_total_sum_of_value(self, value_to_sum):
-        total_sum = 0
         task_value = get_task_value_to_sum(self.task, value_to_sum)
-        for index in range(len(self.items_array)):
-            if self.items_array[index] == 1:
-                total_sum += task_value[index]
-        return total_sum
+        filter_array = self.items_array == 1
+        filtered_array = task_value[filter_array]
+        return np.sum(filtered_array)
