@@ -13,6 +13,18 @@ from tournament import tournament
 from crossover import crossover
 
 
+def main():
+    generate(NUMBER_OF_OBJECTS, MAXIMUM_WEIGHT, MAXIMUM_SIZE, FILE_NAME)
+    task = read(FILE_NAME)
+    generation_indexes = np.asarray(range(MAX_ITERATIONS))
+    # sketch_plot_for_values('crossover_rate', task, generation_indexes)
+    # sketch_plot_for_values('mutation_rate', task, generation_indexes)
+    # sketch_plot_for_values('tournament_size', task, generation_indexes)
+    # sketch_plot_for_values('population_size', task, generation_indexes)
+    non_genetic_algorithm(task)
+    genetic_algorithm(task, 0.75, 0.001, 10, 150)
+
+
 def get_good_solution(task,
                       crossover_rate=CROSSOVER_RATE, mutation_rate=MUTATION_RATE,
                       tournament_size=TOURNAMENT_SIZE, population_size=POPULATION_SIZE):
@@ -74,18 +86,6 @@ def sketch_plot_for_values(value_to_sketch, task, generation_indexes):
     plt.ylabel('Knapsack\'s value')
     plt.legend()
     plt.show()
-
-
-def main():
-    generate(NUMBER_OF_OBJECTS, MAXIMUM_WEIGHT, MAXIMUM_SIZE, FILE_NAME)
-    task = read(FILE_NAME)
-    generation_indexes = np.asarray(range(MAX_ITERATIONS))
-    # sketch_plot_for_values('crossover_rate', task, generation_indexes)
-    # sketch_plot_for_values('mutation_rate', task, generation_indexes)
-    # sketch_plot_for_values('tournament_size', task, generation_indexes)
-    # sketch_plot_for_values('population_size', task, generation_indexes)
-    non_genetic_algorithm(task)
-    genetic_algorithm(task, 0.75, 0.001, 10, 150)
 
 
 def non_genetic_algorithm(task):
