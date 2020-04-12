@@ -11,20 +11,17 @@ def get_columns(rows):
 
 
 def get_squares(rows):
-    squares = np.empty(9)
-    for i in range(9):
-        np.append(squares, )
-    print('type(squares)', type(squares))
-    print('type(np.empty(9))', type(np.empty(9)))
+    squares = np.zeros((9, 9))
+    indexes_to_assign = np.zeros(9, dtype=int)
+
     for row_index in range(len(rows)):
         for column_index in range(len(rows)):
             number = rows[row_index][column_index]
-            # print('number', number)
             index = int(row_index / 3) * 3 + int(column_index / 3)
-            print('type(squares[index])', type(squares[index]))
-            np.append(squares[index], number)
-    print('squares[0]', squares[0])
-    return np.asarray(squares)
+            index_to_assign = indexes_to_assign[index]
+            squares[index][index_to_assign] = number
+            indexes_to_assign[index] = indexes_to_assign[index] + 1
+    return squares
 
 
 class Game:
@@ -37,7 +34,6 @@ class Game:
         self.rows = np.split(numbers, len(numbers) / 9)
         self.columns = get_columns(self.rows)
         self.squares = get_squares(self.rows)
-        print('self.squares', self.squares)
 
     game_id = 0
     difficulty = 0
