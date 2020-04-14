@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4834d886-2a1e-4aca-91a8-e1462e3be6ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Field.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sudoku_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/patryks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/patryks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Field.py" beforeDir="false" afterPath="$PROJECT_DIR$/Field.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/Game.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku/sudoku-main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku_main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +30,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -91,7 +87,8 @@
       <workItem from="1586635975925" duration="37000" />
       <workItem from="1586636567460" duration="2585000" />
       <workItem from="1586640141335" duration="286000" />
-      <workItem from="1586640449294" duration="23388000" />
+      <workItem from="1586640449294" duration="26415000" />
+      <workItem from="1586855396158" duration="10676000" />
     </task>
     <task id="LOCAL-00001" summary="Reading csv, Task and Game classes alpha">
       <created>1586651211133</created>
@@ -107,73 +104,86 @@
       <option name="project" value="LOCAL" />
       <updated>1586653766114</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Sudoku backtracking beta">
+      <created>1586710067232</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586710067232</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Reading csv, Task and Game classes alpha" />
     <MESSAGE value="Fixed getting squares" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed getting squares" />
+    <MESSAGE value="Sudoku backtracking beta" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sudoku backtracking beta" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="174" key="CommitChangelistDialog2" timestamp="1586653765463">
+    <state x="640" y="316" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1586855269483">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="585" y="174" key="CommitChangelistDialog2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586653765463" />
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom" timestamp="1586710052104">
+    <state x="640" y="316" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586855269483" />
+    <state x="585" y="174" key="CommitChangelistDialog2" timestamp="1586710066217">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586710052104" />
-    <state width="1877" height="392" key="GridCell.Tab.0.center" timestamp="1586710052104">
+    <state x="585" y="174" key="CommitChangelistDialog2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586710066217" />
+    <state width="1875" height="411" key="GridCell.Tab.0.bottom" timestamp="1586904727024">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586710052104" />
-    <state width="1877" height="392" key="GridCell.Tab.0.left" timestamp="1586710052104">
+    <state width="1875" height="411" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586904727024" />
+    <state width="1875" height="411" key="GridCell.Tab.0.center" timestamp="1586904727023">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586710052104" />
-    <state width="1877" height="392" key="GridCell.Tab.0.right" timestamp="1586710052104">
+    <state width="1875" height="411" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586904727023" />
+    <state width="1875" height="411" key="GridCell.Tab.0.left" timestamp="1586904727023">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586710052104" />
-    <state width="1877" height="396" key="GridCell.Tab.1.bottom" timestamp="1586653664346">
+    <state width="1875" height="411" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586904727023" />
+    <state width="1875" height="411" key="GridCell.Tab.0.right" timestamp="1586904727024">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="396" key="GridCell.Tab.1.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586653664346" />
-    <state width="1877" height="396" key="GridCell.Tab.1.center" timestamp="1586653664346">
+    <state width="1875" height="411" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586904727024" />
+    <state width="1877" height="396" key="GridCell.Tab.1.bottom" timestamp="1586855292389">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="396" key="GridCell.Tab.1.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586653664346" />
-    <state width="1877" height="396" key="GridCell.Tab.1.left" timestamp="1586653664345">
+    <state width="1877" height="396" key="GridCell.Tab.1.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586855292389" />
+    <state width="1877" height="396" key="GridCell.Tab.1.center" timestamp="1586855292389">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="396" key="GridCell.Tab.1.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586653664345" />
-    <state width="1877" height="396" key="GridCell.Tab.1.right" timestamp="1586653664346">
+    <state width="1877" height="396" key="GridCell.Tab.1.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586855292389" />
+    <state width="1877" height="396" key="GridCell.Tab.1.left" timestamp="1586855292389">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="396" key="GridCell.Tab.1.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586653664346" />
+    <state width="1877" height="396" key="GridCell.Tab.1.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586855292389" />
+    <state width="1877" height="396" key="GridCell.Tab.1.right" timestamp="1586855292389">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.1.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586855292389" />
     <state x="707" y="211" key="SettingsEditor" timestamp="1586641686221">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="707" y="211" key="SettingsEditor/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586641686221" />
-    <state x="552" y="313" key="Vcs.Push.Dialog.v2" timestamp="1586653767829">
+    <state x="552" y="313" key="Vcs.Push.Dialog.v2" timestamp="1586710069421">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="313" key="Vcs.Push.Dialog.v2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586653767829" />
+    <state x="552" y="313" key="Vcs.Push.Dialog.v2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586710069421" />
     <state x="661" y="404" key="com.intellij.ide.util.TipDialog" timestamp="1586640448912">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="661" y="404" key="com.intellij.ide.util.TipDialog/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586640448912" />
-    <state x="656" y="178" width="607" height="804" key="find.popup" timestamp="1586708909411">
+    <state x="656" y="178" width="607" height="804" key="find.popup" timestamp="1586904563757">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="656" y="178" width="607" height="804" key="find.popup/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586708909411" />
+    <state x="656" y="178" width="607" height="804" key="find.popup/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586904563757" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1586710031116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1586712462404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku_main.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1586904683834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$main.coverage" NAME="main Coverage Results" MODIFIED="1586280665746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

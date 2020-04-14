@@ -1,26 +1,50 @@
-from Board import update_values
+from Board import update_values, update_fields_domains
 
 
-def back_tracking(board):
+def back_tracking(board, back_track_steps):
     empty_field = find_empty_field(board)
     if not empty_field:
         print('That is the last field!')
-        return True
+        return True, back_track_steps
     else:
         field = empty_field
 
     for i in range(1, 10):
-        # print_board(board.rows)
         if is_field_valid(board, field, i):
             field.value = i
             update_values(board, field, False, i)
 
-            if back_tracking(board):
-                return True
+            if back_tracking(board, back_track_steps)[0]:
+                return True, back_track_steps
             field.value = 0
+            back_track_steps += 1
             update_values(board, field, True, i)
 
-    return False
+    return False, back_track_steps
+
+
+def forward_checking(board, back_track_steps):
+    empty_field = find_empty_field(board)
+    if not empty_field:
+        print('That is the last field!')
+        return True, back_track_steps
+    else:
+        field = empty_field
+
+    for i in range(1, 10):
+        if field.domain[i - 1] != -1:
+            field.value = i
+            update_values(board, field, False, i)
+            update_fields_domains(board, field, False, i)
+
+            if forward_checking(board, back_track_steps)[0]:
+                return True, back_track_steps
+            field.value = 0
+            back_track_steps += 1
+            update_values(board, field, True, i)
+            update_fields_domains(board, field, True, i)
+
+    return False, back_track_steps
 
 
 def print_board(bo):
@@ -42,15 +66,6 @@ def is_field_valid(board, field, value):
     row = board.rows[field.y]
     column = board.columns[field.x]
     subgrid = board.subgrids[field.subgrid_index]
-    # print('field.x', field.x)
-    # print('field.y', field.y)
-    # print('row', row)
-    # print('column', column)
-    # print('subgrid', subgrid)
-    # print('value', value)
-    # print('value in row', value in row)
-    # print('value in column', value in column)
-    # print('value in subgrid', value in subgrid)
     if value in row or value in column or value in subgrid:
         return False
     return True
