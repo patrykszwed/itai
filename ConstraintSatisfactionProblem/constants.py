@@ -1,1 +1,1 @@
-SUDOKU_FILE_PATH = './data/Sudoku.csv'
+SUDOKU_FILE_PATH = './data/SudokuTests.csv'

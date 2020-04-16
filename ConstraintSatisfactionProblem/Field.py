@@ -12,14 +12,18 @@ def get_fields_values(structure):
 def add_value_to_domain(field, value):
     # print('Before add_value_to_domain value = ', value, ' domain = ', field.domain)
     if value not in field.domain:
-        field.domain = np.append(field.domain, value)
+        field.domain = np.concatenate([field.domain, [value]])
     # print('After add_value_to_domain domain = ', field.domain)
 
 
 def remove_value_from_domain(field, value):
     # print('Before remove_value_from_domain value = ', value, ' domain = ', field.domain)
     if value in field.domain:
-        field.domain = np.setdiff1d(field.domain, [field.domain[0]])
+        # field.domain = np.setdiff1d(field.domain, [field.domain[0]])
+        # print('field.domain', field.domain)
+        index = np.where(field.domain == value)[0][0]
+        # print('index', index)
+        field.domain = np.delete(field.domain, index)
     # print('After remove_value_from_domain domain = ', field.domain)
 
 

@@ -33,12 +33,19 @@ def forward_checking(board):
         field = empty_field
 
     for value in range(1, 10):
+        # print('value', value)
         if is_field_valid(board, field, value):
             field.value = value
             update_values(board, field, False, value)
-            remove_value_from_fields_domains(board, field, value)
-
-            if not is_domain_wipe_out_v3(board, field, value):
+            is_wipe_out_new = remove_value_from_fields_domains(board, field, value)
+            # print('is_wipe_out_new', is_wipe_out_new)
+            is_wipe_out_old = is_domain_wipe_out_v3(board, field, value)
+            # print('is_wipe_out_old', is_wipe_out_old)
+            # if is_wipe_out_old != is_wipe_out_new:
+            #     print('is_wipe_out_new', is_wipe_out_new)
+            #     print('is_wipe_out_old', is_wipe_out_old)
+            #     print_domains(board.rows)
+            if not is_wipe_out_old:
                 if forward_checking(board):
                     return True
 
