@@ -3,7 +3,7 @@ import time
 from Board import Board
 from constants import SUDOKU_FILE_PATH
 from domains_helpers import init_fields_domains
-from helpers import backtracking, print_board, forward_checking
+from helpers import backtracking, forward_checking
 from read_csv import read_sudoku
 
 
@@ -13,12 +13,12 @@ def backtracking_sudoku(boards_data):
     start_time = time.time()
     board = Board(board_data)
     print('------------- INITIAL SUDOKU - DIFFICULTY LEVEL =', board.difficulty, '-----------------')
-    print_board(board.rows)
+    # print_board(board.rows)
     results = backtracking(board)
     is_solved = results
     if is_solved:
         print('------------- SOLVED SUDOKU -----------------')
-        print_board(board.rows)
+        # print_board(board.rows)
     else:
         print('------------- THIS SUDOKU COULD NOT BE SOLVED -----------------')
     print("--- Backtracking\'s execution time = %s seconds ---" % (time.time() - start_time))
@@ -34,22 +34,25 @@ def backtracking_sudoku(boards_data):
 
 
 def forward_checking_sudoku(boards_data):
+    total_time = 0
     # for board_data in boards_data:
     board_data = boards_data[0]
     start_time = time.time()
     board = Board(board_data)
     init_fields_domains(board)
     print('------------- INITIAL SUDOKU - DIFFICULTY LEVEL =', board.difficulty, '-----------------')
-    print_board(board.rows)
+    # print_board(board.rows)
     results = forward_checking(board)
     is_solved = results
     if is_solved:
         print('------------- SOLVED SUDOKU -----------------')
-        print_board(board.rows)
+        # print_board(board.rows)
     else:
         print('------------- THIS SUDOKU COULD NOT BE SOLVED -----------------')
-        print_board(board.rows)
-    print("--- Forward Checking\'s execution time = %s seconds ---" % (time.time() - start_time))
+        # print_board(board.rows)
+    current_time = (time.time() - start_time)
+    total_time += current_time
+    print("--- Forward Checking\'s execution time = %s seconds ---" % (current_time))
     print("--- Number of backtrack steps in case of Forward Checking algorithm: %d ---" % board.backtrack_steps)
     if len(board.solution) > 0:
         all_rows = []
@@ -59,6 +62,7 @@ def forward_checking_sudoku(boards_data):
                 all_rows.append(rows_fields[j].value)
         all_rows_as_string = ''.join(str(e) for e in all_rows)
         print('Is sudoku solved correctly?', all_rows_as_string == board.solution)
+    print('Total time for FC = ', total_time)
 
 
 def main():

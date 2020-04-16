@@ -1,6 +1,24 @@
 import numpy as np
 
 
+def is_field_valid(board, field, value):
+    row = board.rows[field.y]
+    column = board.columns[field.x]
+    subgrid = board.subgrids[field.subgrid_index]
+    fields = np.concatenate([row.fields, column.fields, subgrid.fields])
+    unique_fields_values = {field.value for field in fields}
+    if value in unique_fields_values:
+        return False
+    return True
+
+
+def is_fields_array_contains_value(fields, value):
+    for i in range(9):
+        if value == fields[i].value:
+            return True
+    return False
+
+
 def get_fields_values(structure):
     fields = structure.fields
     fields_values = []
@@ -9,22 +27,16 @@ def get_fields_values(structure):
     return np.asarray(fields_values)
 
 
-def add_value_to_domain(field, value):
-    # print('Before add_value_to_domain value = ', value, ' domain = ', field.domain)
+def add_value_to_domain(board, field, value):
     if value not in field.domain:
-        field.domain = np.concatenate([field.domain, [value]])
-    # print('After add_value_to_domain domain = ', field.domain)
+        if is_field_valid(board, field, value):
+            field.domain = np.concatenate([field.domain, [value]])
 
 
 def remove_value_from_domain(field, value):
-    # print('Before remove_value_from_domain value = ', value, ' domain = ', field.domain)
     if value in field.domain:
-        # field.domain = np.setdiff1d(field.domain, [field.domain[0]])
-        # print('field.domain', field.domain)
         index = np.where(field.domain == value)[0][0]
-        # print('index', index)
         field.domain = np.delete(field.domain, index)
-    # print('After remove_value_from_domain domain = ', field.domain)
 
 
 class Field:

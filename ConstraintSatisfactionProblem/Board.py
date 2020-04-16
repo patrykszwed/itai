@@ -50,7 +50,7 @@ def get_columns(rows):
             fields[j].append(row_fields[j])
     columns = np.empty(9, dtype=object)
     for i in range(9):
-        columns[i] = Column(i, fields[i])
+        columns[i] = Column(i, np.asarray(fields[i]))
     return columns
 
 
@@ -66,7 +66,7 @@ def get_subgrids(rows):
             fields[index].append(row_fields[j])
     subgrids = np.empty(9, dtype=object)
     for i in range(9):
-        subgrids[i] = Subgrid(i, fields[i])
+        subgrids[i] = Subgrid(i, np.asarray(fields[i]))
     return subgrids
 
 
