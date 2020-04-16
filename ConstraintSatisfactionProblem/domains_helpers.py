@@ -20,6 +20,8 @@ def update_board_domains(board, fields, is_remove, value):
     if is_remove:
         is_wipe_out = False
         for field_to_update in fields:
+            if len(field_to_update.domain) == 1 and field_to_update.domain[0] == value:
+                is_wipe_out = True
             remove_value_from_domain(field_to_update, value)
         return is_wipe_out
     else:
