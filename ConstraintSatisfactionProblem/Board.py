@@ -1,104 +1,217 @@
 import numpy as np
 
-from Field import Field
+from Column import Column
+from Field import Field, add_value_to_domain, remove_value_from_domain
+from Row import Row
+from Subgrid import Subgrid
 
 
-def get_columns(rows):
-    columns = list(range(9))
-    for column_index in range(9):
-        columns[column_index] = list(range(9))
-        for row_index in range(len(rows)):
-            columns[column_index][row_index] = rows[row_index][column_index]
-    return np.asarray(columns)
-
-
-def get_subgrids(rows):
-    subgrids = np.zeros((9, 9), dtype=int)
-    indexes_to_assign = np.zeros(9, dtype=int)
-
-    for row_index in range(len(rows)):
-        for column_index in range(len(rows)):
-            number = rows[row_index][column_index]
-            index = int(row_index / 3) * 3 + int(column_index / 3)
-            index_to_assign = indexes_to_assign[index]
-            subgrids[index][index_to_assign] = number
-            indexes_to_assign[index] = indexes_to_assign[index] + 1
-    return np.asarray(subgrids)
-
-
-def get_fields(numbers):
-    fields = np.empty(81, dtype=object)
-    index = 0
-    for i in range(9):
-        for j in range(9):
-            subgrid_index = int(i / 3) * 3 + int(j / 3)
-            fields[index] = Field(numbers[index], j, i, subgrid_index)
-            index = index + 1
-    return fields
+def update_subgrid(subgrid_fields, value, is_set_to_zero):
+    value_to_search = value if is_set_to_zero else 0
+    value_to_set = 0 if is_set_to_zero else value
+    for i in range(len(subgrid_fields)):
+        if subgrid_fields[i] == value_to_search:
+            subgrid_fields[i].value = value_to_set
+            return
 
 
 def update_values(board, field, is_set_to_zero, value):
     x = field.x
     y = field.y
     column = board.columns[x]
-    column[y] = 0 if is_set_to_zero else value
+    column.fields[y].value = 0 if is_set_to_zero else value
     row = board.rows[y]
-    row[x] = 0 if is_set_to_zero else value
+    row.fields[x].value = 0 if is_set_to_zero else value
     subgrid_index = int(y / 3) * 3 + int(x / 3)
     subgrid = board.subgrids[subgrid_index]
-    # print('before update_subgrid value=', value, ' x=', x, ' y=', y)
-    update_subgrid(subgrid, value, is_set_to_zero)
+    update_subgrid(subgrid.fields, value, is_set_to_zero)
 
+
+def is_domain_wipe_out(board, field):
+    x = field.x
+    y = field.y
+    subgrid_index = int(y / 3) * 3 + int(x / 3)
+    row = board.rows[y]
+    column = board.columns[x]
+    subgrid = board.subgrids[subgrid_index]
+    fields_to_check = np.concatenate(
+        [row.fields, column.fields, subgrid.fields])
+    unique_fields_to_check = {e for e in fields_to_check}
+    for field in unique_fields_to_check:
+        if len(field.domain) == 0:
+            return True
+
+
+def reset_fields_domains(board):
+    # print('update_fields_domain value', value)
+    for i in range(9):
+        row = board.rows[i]
+        column = board.columns[i]
+        subgrid = board.subgrids[i]
+        fields_to_check = np.concatenate(
+            [row.fields, column.fields, subgrid.fields])
+        unique_fields_to_check = {e for e in fields_to_check}
+        print('----------------RESET')
+        update_structure_domains(unique_fields_to_check, row, column, subgrid)
+
+
+def update_fields_domains(board, field, is_remove, value):
+    # print('update_fields_domain value', value)
+    x = field.x
+    y = field.y
+    subgrid_index = int(y / 3) * 3 + int(x / 3)
+    row = board.rows[y]
+    column = board.columns[x]
+    subgrid = board.subgrids[subgrid_index]
+    fields_to_check = np.concatenate(
+        [row.fields, column.fields, subgrid.fields])
+    unique_fields_to_check = {e for e in fields_to_check}
+    # print('update unique_fields_to_check', [(field.x, field.y) for field in unique_fields_to_check])
+
+    update_structure_domains(unique_fields_to_check, is_remove, value)
+
+
+def remove_value_from_fields_domains(board, field, value):
+    x = field.x
+    y = field.y
+    subgrid_index = int(y / 3) * 3 + int(x / 3)
+    row = board.rows[y]
+    column = board.columns[x]
+    subgrid = board.subgrids[subgrid_index]
+    fields_to_check = np.concatenate(
+        [row.fields, column.fields, subgrid.fields])
+    unique_fields_to_check = {e for e in fields_to_check}
+
+    update_structure_domains(unique_fields_to_check, True, value)
+
+
+def add_value_to_fields_domains(board, field, value):
+    # print('update_fields_domain value', value)
+    x = field.x
+    y = field.y
+    subgrid_index = int(y / 3) * 3 + int(x / 3)
+    row = board.rows[y]
+    column = board.columns[x]
+    subgrid = board.subgrids[subgrid_index]
+    fields_to_check = np.concatenate(
+        [row.fields, column.fields, subgrid.fields])
+    unique_fields_to_check = {e for e in fields_to_check}
+    # print('update unique_fields_to_check', [(field.x, field.y) for field in unique_fields_to_check])
+
+    update_structure_domains(unique_fields_to_check, False, value)
+
+
+def get_all_fields_domains_from_board(board):
+    fields = []
+    for i in range(9):
+        row = board.rows[i]
+        column = board.columns[i]
+        subgrid = board.subgrids[i]
+        fields_to_check = np.concatenate(
+            [row.fields, column.fields, subgrid.fields])
+        unique_fields_to_check = {e for e in fields_to_check}
+        fields.append([field.domain for field in unique_fields_to_check])
+
+
+def update_structure_domains(fields, is_remove, value):
+    function_to_call = remove_value_from_domain if is_remove else add_value_to_domain
+    for field_to_update in fields:
+        # print('Before update domain', field_to_update.domain)
+        function_to_call(field_to_update, value)
+        # print('After update domain', field_to_update.domain)
+
+
+# def update_fields_domains(board, field, is_remove, value):
+#     # print('update_fields_domain value', value)
+#     x = field.x
+#     y = field.y
+#     subgrid_index = int(y / 3) * 3 + int(x / 3)
+#     row = board.rows[y]
+#     column = board.columns[x]
+#     subgrid = board.subgrids[subgrid_index]
+#     fields_to_check = np.concatenate(
+#         [row.fields, column.fields, subgrid.fields])
+#     unique_fields_to_check = {e for e in fields_to_check}
+#     # print('update unique_fields_to_check', [(field.x, field.y) for field in unique_fields_to_check])
+#
+#     # update_structure_domains(unique_fields_to_check, row, column, subgrid)
+
+# def update_structure_domains(fields, row, column, subgrid):
+#     for field_to_update in fields:
+#         print('Before update domain', field_to_update.domain)
+#         field_to_update.set_domain(row, column, subgrid)
+#         print('After update domain', field_to_update.domain)
 
 def init_fields_domains(board):
-    fields = board.fields
-    for field in fields:
-        x = field.x
-        y = field.y
-        column = board.columns[x]
-        row = board.rows[y]
-        subgrid_index = int(y / 3) * 3 + int(x / 3)
-        subgrid = board.subgrids[subgrid_index]
-        field.set_domain(row, column, subgrid)
-
-
-def update_fields_domains(board, field, is_set_to_zero, value):
-    fields = board.fields
-    for field_to_update in fields:
-        x = field_to_update.x
-        y = field_to_update.y
-        subgrid_index = int(y / 3) * 3 + int(x / 3)
-        # print('x', x)
-        # print('field.x', field.x)
-        # print('y', y)
-        # print('field.y', field.y)
-        # print('subgrid_index', subgrid_index)
-        # print('field.subgrid_index', field.subgrid_index)
-        if x == field.x or y == field.y or subgrid_index == field.subgrid_index:
+    rows = board.rows
+    for i in range(len(rows)):
+        fields = rows[i].fields
+        for field in fields:
+            x = field.x
+            y = field.y
             column = board.columns[x]
             row = board.rows[y]
+            subgrid_index = int(y / 3) * 3 + int(x / 3)
             subgrid = board.subgrids[subgrid_index]
             field.set_domain(row, column, subgrid)
-            # field_to_update.update_domain(row, column, subgrid, is_set_to_zero, value)
+            field.make_domain_copy()
+            # print('field.domain', field.domain)
 
 
-def update_subgrid(subgrid, value, is_set_to_zero):
-    # print('update_subgrid is_set_to_zero =', is_set_to_zero, ' value =', value, ' subgrid=', subgrid)
-    if is_set_to_zero:
-        for i in range(len(subgrid)):
-            if subgrid[i] == value:
-                subgrid[i] = 0
-                return
-    else:
-        for i in range(len(subgrid)):
-            if subgrid[i] == 0:
-                subgrid[i] = value
-                return
+def get_rows(numbers):
+    rows = np.empty(9, dtype=object)
+    index = 0
+    for i in range(9):
+        fields = np.empty(9, dtype=object)
+        for j in range(9):
+            subgrid_index = int(i / 3) * 3 + int(j / 3)
+            fields[j] = Field(numbers[index], j, i, subgrid_index)
+            index += 1
+        rows[i] = Row(i, fields)
+    return rows
+
+
+def get_columns(rows):
+    fields = []
+    for i in range(9):
+        fields.append([])
+    for i in range(9):
+        row_fields = rows[i].fields
+        for j in range(len(row_fields)):
+            fields[j].append(row_fields[j])
+    columns = np.empty(9, dtype=object)
+    for i in range(9):
+        columns[i] = Column(i, fields[i])
+    return columns
+
+
+def get_subgrids(rows):
+    fields = []
+    for i in range(9):
+        fields.append([])
+
+    for i in range(9):
+        row_fields = rows[i].fields
+        for j in range(len(row_fields)):
+            index = int(i / 3) * 3 + int(j / 3)
+            fields[index].append(row_fields[j])
+    subgrids = np.empty(9, dtype=object)
+    for i in range(9):
+        subgrids[i] = Subgrid(i, fields[i])
+    return subgrids
+
+
+def get_fields(rows):
+    fields = []
+    for i in range(9):
+        row_fields = rows[i].fields
+        for j in range(len(row_fields)):
+            fields.append(row_fields[j])
+    return np.asarray(fields)
 
 
 class Board:
     def __init__(self, board_data):
-        self.board_id = board_data[0]
         self.difficulty = int(float(board_data[1]))
         self.solution = board_data[3]
 
@@ -107,15 +220,16 @@ class Board:
         int_list = [int(numeric_string) for numeric_string in strings_list]
         numbers = np.array(int_list)
 
-        self.rows = np.split(numbers, len(numbers) / 9)
+        self.rows = get_rows(numbers)
         self.columns = get_columns(self.rows)
         self.subgrids = get_subgrids(self.rows)
-        self.fields = get_fields(numbers)
+        # self.fields = get_fields(self.rows)
 
-    board_id = 0
     difficulty = 0
     solution = 0
     columns = np.empty(9)
     rows = np.empty(9)
     subgrids = np.empty(9)
     fields = np.empty(81)
+    backtrack_steps = 0
+    domain_wipe_out = False
