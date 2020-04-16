@@ -17,10 +17,10 @@ def add_value_to_domain(field, value):
 
 
 def remove_value_from_domain(field, value):
-    # print('Before remove_value_from_domain value = ', value, ' domain = ', field.domain)
+    print('Before remove_value_from_domain value = ', value, ' domain = ', field.domain)
     if value in field.domain:
         field.domain = np.setdiff1d(field.domain, [field.domain[0]])
-    # print('After remove_value_from_domain domain = ', field.domain)
+    print('After remove_value_from_domain domain = ', field.domain)
 
 
 class Field:
@@ -30,7 +30,7 @@ class Field:
         self.y = y
         self.subgrid_index = subgrid_index
 
-    def set_domain(self, row, column, subgrid):
+    def init_domain(self, row, column, subgrid):
         initial_domain = []
         domain_to_check = np.concatenate(
             [get_fields_values(row), get_fields_values(column), get_fields_values(subgrid)])
@@ -39,12 +39,8 @@ class Field:
                 initial_domain.append(value)
         self.domain = np.asarray(initial_domain)
 
-    def make_domain_copy(self):
-        self.domain_copy = np.copy(self.domain)
-
     value = 0
     x = 0
     y = 0
     subgrid_index = 0
     domain = 0
-    domain_copy = 0

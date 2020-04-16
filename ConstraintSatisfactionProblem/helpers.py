@@ -1,4 +1,5 @@
-from Board import update_values, is_domain_wipe_out, remove_value_from_fields_domains, add_value_to_fields_domains
+from Board import update_values, remove_value_from_fields_domains, add_value_to_fields_domains, \
+    is_domain_wipe_out_v3
 
 
 def backtracking(board):
@@ -37,7 +38,7 @@ def forward_checking(board):
             update_values(board, field, False, value)
             remove_value_from_fields_domains(board, field, value)
 
-            if not is_domain_wipe_out(board, field):
+            if not is_domain_wipe_out_v3(board, field, value):
                 if forward_checking(board):
                     return True
 
@@ -47,46 +48,6 @@ def forward_checking(board):
             add_value_to_fields_domains(board, field, value)
 
     return False
-
-
-# def forward_checking(board):
-#     empty_field = find_empty_field(board.rows)
-#     if not empty_field:
-#         print('That is the last field!')
-#         return True
-#     else:
-#         field = empty_field
-#
-#     # print('field x', field.x, ' field y', field.y)
-#     # print('field.domain', field.domain)
-#     if len(field.domain) == 0:
-#         print('DOMAIN WIPE OUT for x', field.x, ' y', field.y)
-#         print('field.domain_copy', field.domain_copy)
-#         # field.domain_copy = np.setdiff1d(field.domain_copy, [field.domain_copy[0]])
-#         field.domain = field.domain_copy
-#         field.value = 0
-#         board.backtrack_steps += 1
-#
-#         update_values(board, field, True, value)
-#         update_fields_domains(board, field, False, value)
-#         domain_wipe_out = True
-#         # print('domain_copy', domain_copy)
-#     for value in field.domain:
-#         # print('value', value)
-#         field.value = value
-#         domain_wipe_out = False
-#         print('field.domain', field.domain)
-#         update_values(board, field, False, value)
-#         update_fields_domains(board, field, True, value)
-#
-#         print('field.domain_copy', field.domain_copy)
-#
-#         if forward_checking(board):
-#             return True
-#         # print('NOT WORKING!')
-#         # print_board(board.rows)
-#
-#     return False
 
 
 def print_board(rows):

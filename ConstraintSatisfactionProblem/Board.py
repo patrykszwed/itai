@@ -42,6 +42,32 @@ def is_domain_wipe_out(board, field):
             return True
 
 
+def is_domain_wipe_out_v3(board, field, value):
+    fields = board.fields
+    for field_to_update in fields:
+        x = field_to_update.x
+        y = field_to_update.y
+        subgrid_index = int(y / 3) * 3 + int(x / 3)
+        if x == field.x or y == field.y or subgrid_index == field.subgrid_index:
+            if len(field.domain) == 1 and field.domain[0] == value:
+                return True
+
+
+def is_domain_wipe_out_v2(board, field, value):
+    x = field.x
+    y = field.y
+    subgrid_index = int(y / 3) * 3 + int(x / 3)
+    row = board.rows[y]
+    column = board.columns[x]
+    subgrid = board.subgrids[subgrid_index]
+    fields_to_check = np.concatenate(
+        [row.fields, column.fields, subgrid.fields])
+    unique_fields_to_check = {e for e in fields_to_check}
+    for field in unique_fields_to_check:
+        if len(field.domain) == 1 and field.domain[0] == value:
+            return True
+
+
 def reset_fields_domains(board):
     # print('update_fields_domain value', value)
     for i in range(9):
@@ -52,7 +78,7 @@ def reset_fields_domains(board):
             [row.fields, column.fields, subgrid.fields])
         unique_fields_to_check = {e for e in fields_to_check}
         print('----------------RESET')
-        update_structure_domains(unique_fields_to_check, row, column, subgrid)
+        update_board_domains(unique_fields_to_check, )
 
 
 def update_fields_domains(board, field, is_remove, value):
@@ -68,7 +94,7 @@ def update_fields_domains(board, field, is_remove, value):
     unique_fields_to_check = {e for e in fields_to_check}
     # print('update unique_fields_to_check', [(field.x, field.y) for field in unique_fields_to_check])
 
-    update_structure_domains(unique_fields_to_check, is_remove, value)
+    update_board_domains(unique_fields_to_check, is_remove, value)
 
 
 def remove_value_from_fields_domains(board, field, value):
@@ -82,7 +108,7 @@ def remove_value_from_fields_domains(board, field, value):
         [row.fields, column.fields, subgrid.fields])
     unique_fields_to_check = {e for e in fields_to_check}
 
-    update_structure_domains(unique_fields_to_check, True, value)
+    update_board_domains(unique_fields_to_check, True, value)
 
 
 def add_value_to_fields_domains(board, field, value):
@@ -98,7 +124,7 @@ def add_value_to_fields_domains(board, field, value):
     unique_fields_to_check = {e for e in fields_to_check}
     # print('update unique_fields_to_check', [(field.x, field.y) for field in unique_fields_to_check])
 
-    update_structure_domains(unique_fields_to_check, False, value)
+    update_board_domains(unique_fields_to_check, False, value)
 
 
 def get_all_fields_domains_from_board(board):
@@ -113,7 +139,7 @@ def get_all_fields_domains_from_board(board):
         fields.append([field.domain for field in unique_fields_to_check])
 
 
-def update_structure_domains(fields, is_remove, value):
+def update_board_domains(fields, is_remove, value):
     function_to_call = remove_value_from_domain if is_remove else add_value_to_domain
     for field_to_update in fields:
         # print('Before update domain', field_to_update.domain)
@@ -153,9 +179,7 @@ def init_fields_domains(board):
             row = board.rows[y]
             subgrid_index = int(y / 3) * 3 + int(x / 3)
             subgrid = board.subgrids[subgrid_index]
-            field.set_domain(row, column, subgrid)
-            field.make_domain_copy()
-            # print('field.domain', field.domain)
+            field.init_domain(row, column, subgrid)
 
 
 def get_rows(numbers):
@@ -223,7 +247,7 @@ class Board:
         self.rows = get_rows(numbers)
         self.columns = get_columns(self.rows)
         self.subgrids = get_subgrids(self.rows)
-        # self.fields = get_fields(self.rows)
+        self.fields = get_fields(self.rows)
 
     difficulty = 0
     solution = 0
