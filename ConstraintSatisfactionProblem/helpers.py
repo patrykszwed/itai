@@ -1,5 +1,5 @@
-from Board import update_values, remove_value_from_fields_domains, add_value_to_fields_domains, \
-    is_domain_wipe_out_v3
+from Board import update_values
+from domains_helpers import remove_value_from_fields_domains, add_value_to_fields_domains, is_domain_wipe_out_v3
 
 
 def backtracking(board):

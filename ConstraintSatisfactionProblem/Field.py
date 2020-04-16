@@ -17,10 +17,10 @@ def add_value_to_domain(field, value):
 
 
 def remove_value_from_domain(field, value):
-    print('Before remove_value_from_domain value = ', value, ' domain = ', field.domain)
+    # print('Before remove_value_from_domain value = ', value, ' domain = ', field.domain)
     if value in field.domain:
         field.domain = np.setdiff1d(field.domain, [field.domain[0]])
-    print('After remove_value_from_domain domain = ', field.domain)
+    # print('After remove_value_from_domain domain = ', field.domain)
 
 
 class Field:
