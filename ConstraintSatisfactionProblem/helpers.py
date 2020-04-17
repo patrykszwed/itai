@@ -1,5 +1,6 @@
 from Board import update_values
-from domains_helpers import remove_value_from_fields_domains, is_field_valid, load_previous_domains
+from domains_helpers import update_fields
+from fields_helpers import find_empty_field, is_field_valid, find_best_field
 
 
 def backtracking(board):
@@ -34,17 +35,17 @@ def forward_checking(board):
 
     for value in field.domain:
         field.value = value
-        update_values(board, field, False, value)
-        is_wipe_out = remove_value_from_fields_domains(board, field, value)
+        update_values(board, field, value, False)
+        is_wipe_out = update_fields(board, field, value, True)
 
         if not is_wipe_out:
             if forward_checking(board):
                 return True
-        # print('board.domains_index', board.domains_index)
+
         field.value = 0
         board.backtrack_steps += 1
-        update_values(board, field, True, value)
-        load_previous_domains(board, field, value)
+        update_values(board, field, value, True)
+        update_fields(board, field, value, False)
 
     return False
 
@@ -77,27 +78,3 @@ def print_domains(rows):
                 print(row_fields[j].domain)
             else:
                 print(str(row_fields[j].domain) + " ", end="")
-
-
-def find_best_field(board):
-    min_len = 10
-    field_to_return = None
-    for field in board.fields:
-        domain_length = len(field.domain)
-        if field.value == 0 and domain_length > 0:
-            if domain_length == 1:
-                return field
-            if domain_length < min_len:
-                field_to_return = field
-
-    return field_to_return
-
-
-def find_empty_field(rows):
-    for i in range(len(rows)):
-        fields = rows[i].fields
-        for j in range(len(fields)):
-            field = fields[j]
-            if field.value == 0:
-                return field
-    return None

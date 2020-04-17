@@ -9,21 +9,18 @@ from Subgrid import Subgrid
 def update_subgrid(subgrid_fields, value, is_set_to_zero):
     value_to_search = value if is_set_to_zero else 0
     value_to_set = 0 if is_set_to_zero else value
-    for i in range(len(subgrid_fields)):
-        if subgrid_fields[i] == value_to_search:
-            subgrid_fields[i].value = value_to_set
+    for subgrid_field in subgrid_fields:
+        if subgrid_field == value_to_search:
+            subgrid_field.value = value_to_set
             return
 
 
-def update_values(board, field, is_set_to_zero, value):
-    x = field.x
-    y = field.y
-    column = board.columns[x]
-    column.fields[y].value = 0 if is_set_to_zero else value
-    row = board.rows[y]
-    row.fields[x].value = 0 if is_set_to_zero else value
-    subgrid_index = int(y / 3) * 3 + int(x / 3)
-    subgrid = board.subgrids[subgrid_index]
+def update_values(board, field, value, is_set_to_zero):
+    column = board.columns[field.x]
+    column.fields[field.y].value = 0 if is_set_to_zero else value
+    row = board.rows[field.y]
+    row.fields[field.x].value = 0 if is_set_to_zero else value
+    subgrid = board.subgrids[field.subgrid_index]
     update_subgrid(subgrid.fields, value, is_set_to_zero)
 
 
@@ -93,7 +90,6 @@ class Board:
         self.columns = get_columns(self.rows)
         self.subgrids = get_subgrids(self.rows)
         self.fields = get_fields(self.rows)
-        self.domains_index = -1
 
     difficulty = 0
     solution = 0
@@ -102,4 +98,3 @@ class Board:
     subgrids = np.empty(9)
     fields = np.empty(81)
     backtrack_steps = 0
-    domains_index = -1
