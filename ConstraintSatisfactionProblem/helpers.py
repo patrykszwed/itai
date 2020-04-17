@@ -1,6 +1,5 @@
 from Board import update_values
-from Field import is_field_valid
-from domains_helpers import remove_value_from_fields_domains, add_value_to_fields_domains, is_domain_wipe_out
+from domains_helpers import remove_value_from_fields_domains, is_field_valid, load_previous_domains
 
 
 def backtracking(board):
@@ -36,18 +35,16 @@ def forward_checking(board):
     for value in field.domain:
         field.value = value
         update_values(board, field, False, value)
-        is_wipe_out_new = remove_value_from_fields_domains(board, field, value)
-        is_wipe_out_old = is_domain_wipe_out(board, field, value)
-        # if is_wipe_out_new != is_wipe_out_old:
-        #     print('DIFFF')
-        if not is_wipe_out_old:
+        is_wipe_out = remove_value_from_fields_domains(board, field, value)
+
+        if not is_wipe_out:
             if forward_checking(board):
                 return True
-
+        print('board.domains_index', board.domains_index)
         field.value = 0
         board.backtrack_steps += 1
         update_values(board, field, True, value)
-        add_value_to_fields_domains(board, field, value)
+        load_previous_domains(board, field, value)
 
     return False
 

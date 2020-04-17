@@ -93,6 +93,7 @@ class Board:
         self.columns = get_columns(self.rows)
         self.subgrids = get_subgrids(self.rows)
         self.fields = get_fields(self.rows)
+        self.domains_index = -1
 
     difficulty = 0
     solution = 0
@@ -101,4 +102,4 @@ class Board:
     subgrids = np.empty(9)
     fields = np.empty(81)
     backtrack_steps = 0
-    domain_wipe_out = False
+    domains_index = -1
