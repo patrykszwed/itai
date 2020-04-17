@@ -25,7 +25,7 @@ def backtracking(board):
 
 
 def forward_checking(board):
-    empty_field = find_empty_field(board.rows)
+    empty_field = find_best_field(board)
     if not empty_field:
         print('That is the last field!')
         return True
@@ -77,6 +77,20 @@ def print_domains(rows):
                 print(row_fields[j].domain)
             else:
                 print(str(row_fields[j].domain) + " ", end="")
+
+
+def find_best_field(board):
+    min_len = 10
+    field_to_return = None
+    for field in board.fields:
+        domain_length = len(field.domain)
+        if field.value == 0 and domain_length > 0:
+            if domain_length == 1:
+                return field
+            if domain_length < min_len:
+                field_to_return = field
+
+    return field_to_return
 
 
 def find_empty_field(rows):
