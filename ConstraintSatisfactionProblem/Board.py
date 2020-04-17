@@ -25,15 +25,15 @@ def update_values(board, field, value, is_set_to_zero):
 
 
 def get_rows(numbers):
-    rows = np.empty(9, dtype=object)
+    rows = []
     index = 0
     for i in range(9):
-        fields = np.empty(9, dtype=object)
+        fields = []
         for j in range(9):
             subgrid_index = int(i / 3) * 3 + int(j / 3)
-            fields[j] = Field(numbers[index], j, i, subgrid_index)
+            fields.append(Field(numbers[index], j, i, subgrid_index))
             index += 1
-        rows[i] = Row(i, fields)
+        rows.append(Row(i, fields))
     return rows
 
 
@@ -45,9 +45,9 @@ def get_columns(rows):
         row_fields = rows[i].fields
         for j in range(len(row_fields)):
             fields[j].append(row_fields[j])
-    columns = np.empty(9, dtype=object)
+    columns = []
     for i in range(9):
-        columns[i] = Column(i, np.asarray(fields[i]))
+        columns.append(Column(i, fields[i]))
     return columns
 
 
@@ -61,9 +61,9 @@ def get_subgrids(rows):
         for j in range(len(row_fields)):
             index = int(i / 3) * 3 + int(j / 3)
             fields[index].append(row_fields[j])
-    subgrids = np.empty(9, dtype=object)
+    subgrids = []
     for i in range(9):
-        subgrids[i] = Subgrid(i, np.asarray(fields[i]))
+        subgrids.append(Subgrid(i, fields[i]))
     return subgrids
 
 
@@ -73,7 +73,7 @@ def get_fields(rows):
         row_fields = rows[i].fields
         for j in range(len(row_fields)):
             fields.append(row_fields[j])
-    return np.asarray(fields)
+    return fields
 
 
 class Board:
@@ -84,7 +84,7 @@ class Board:
         board_data[2] = np.char.replace(board_data[2], '.', '0')
         strings_list = list(board_data[2])
         int_list = [int(numeric_string) for numeric_string in strings_list]
-        numbers = np.array(int_list)
+        numbers = int_list
 
         self.rows = get_rows(numbers)
         self.columns = get_columns(self.rows)
@@ -93,8 +93,8 @@ class Board:
 
     difficulty = 0
     solution = 0
-    columns = np.empty(9)
-    rows = np.empty(9)
-    subgrids = np.empty(9)
-    fields = np.empty(81)
+    columns = []
+    rows = []
+    subgrids = []
+    fields = []
     backtrack_steps = 0

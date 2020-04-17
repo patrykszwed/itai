@@ -1,11 +1,8 @@
-import numpy as np
-
-
 def is_field_valid(board, field, value):
     row = board.rows[field.y]
     column = board.columns[field.x]
     subgrid = board.subgrids[field.subgrid_index]
-    fields = np.concatenate([row.fields, column.fields, subgrid.fields])
+    fields = row.fields + column.fields + subgrid.fields
     unique_fields_values = {field.value for field in fields}
     return value in unique_fields_values
 
