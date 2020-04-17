@@ -47,7 +47,7 @@ def remove_value_from_fields_domains(board, field, value):
     subgrid = board.subgrids[subgrid_index]
     fields_to_check = np.concatenate([row.fields, column.fields, subgrid.fields])
     unique_fields_to_check = {e for e in fields_to_check}
-    return update_fields_domains(board, unique_fields_to_check, True, value)
+    return update_fields(board, unique_fields_to_check, True, value)
 
 
 def load_previous_domains(board, field, value):
@@ -58,20 +58,33 @@ def load_previous_domains(board, field, value):
     column = board.columns[x]
     subgrid = board.subgrids[subgrid_index]
     fields_to_check = np.concatenate([row.fields, column.fields, subgrid.fields])
-    return update_fields_domains(board, fields_to_check, False, value)
+    return update_fields(board, fields_to_check, False, value)
 
 
-def update_fields_domains(board, fields, is_remove, value):
+def update_fields_domains(board, fields):
+    for field in fields:
+        x = field.x
+        y = field.y
+        subgrid_index = field.subgrid_index
+        column = board.columns[x]
+        row = board.rows[y]
+        subgrid = board.subgrids[subgrid_index]
+        field.init_domain(row, column, subgrid)
+
+
+def update_fields(board, fields, is_remove, value):
     if is_remove:
         if is_domain_wipe_out(fields, value):
             return True
-        for field in fields:
-            remove_value_from_domain(field, value)
-        add_domains_copies_for_board(board, fields)
+        # for field in fields:
+        #     remove_value_from_domain(field, value)
+        # add_domains_copies_for_board(board, fields)
         board.domains_index += 1
+        update_fields_domains(board, fields)
     else:
         board.domains_index -= 1
-        restore_previous_domains_copies_for_board(board)
+        # restore_previous_domains_copies_for_board(board)
+        update_fields_domains(board, fields)
     return False
 
 

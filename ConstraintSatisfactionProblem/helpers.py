@@ -40,7 +40,7 @@ def forward_checking(board):
         if not is_wipe_out:
             if forward_checking(board):
                 return True
-        print('board.domains_index', board.domains_index)
+        # print('board.domains_index', board.domains_index)
         field.value = 0
         board.backtrack_steps += 1
         update_values(board, field, True, value)
