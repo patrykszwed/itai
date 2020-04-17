@@ -1,10 +1,12 @@
+from domains_helpers import get_fields_values
+
+
 def is_field_valid(board, field, value):
     row = board.rows[field.y]
     column = board.columns[field.x]
     subgrid = board.subgrids[field.subgrid_index]
-    fields = row.fields + column.fields + subgrid.fields
-    unique_fields_values = {field.value for field in fields}
-    return value in unique_fields_values
+    fields_values = get_fields_values(row) + get_fields_values(column) + get_fields_values(subgrid)
+    return value not in fields_values
 
 
 def find_best_field(board):
@@ -20,11 +22,8 @@ def find_best_field(board):
     return field_to_return
 
 
-def find_empty_field(rows):
-    for i in range(len(rows)):
-        fields = rows[i].fields
-        for j in range(len(fields)):
-            field = fields[j]
-            if field.value == 0:
-                return field
+def find_empty_field(board):
+    for field in board.fields:
+        if field.value == 0:
+            return field
     return None

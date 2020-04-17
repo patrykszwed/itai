@@ -9,12 +9,11 @@ def update_fields(board, field, value, check_for_wipe_out):
     row = board.rows[field.y]
     column = board.columns[field.x]
     subgrid = board.subgrids[field.subgrid_index]
-    fields_to_check = row.fields + column.fields + subgrid.fields
-    unique_fields = {e for e in fields_to_check}
+    fields_to_check = set(row.fields + column.fields + subgrid.fields)
     if check_for_wipe_out:
-        if is_domain_wipe_out(unique_fields, value):
+        if is_domain_wipe_out(fields_to_check, value):
             return True
-    update_fields_domains(board, unique_fields)
+    update_fields_domains(board, fields_to_check)
     return False
 
 

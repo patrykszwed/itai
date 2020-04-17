@@ -8,6 +8,7 @@ from read_csv import read_sudoku
 
 
 def backtracking_sudoku(boards_data):
+    total_time = 0
     for board_data in boards_data:
         # board_data = boards_data[0]
         start_time = time.time()
@@ -21,7 +22,9 @@ def backtracking_sudoku(boards_data):
             # print_board(board.rows)
         else:
             print('------------- THIS SUDOKU COULD NOT BE SOLVED -----------------')
-        print("--- Backtracking\'s execution time = %s seconds ---" % (time.time() - start_time))
+        current_time = (time.time() - start_time)
+        total_time += current_time
+        print("--- Backtracking\'s execution time = %s seconds ---" % current_time)
         print("--- Number of backtrack steps in case of Backtracking algorithm: %d ---" % board.backtrack_steps)
         if len(board.solution) > 0:
             all_rows = []
@@ -31,6 +34,7 @@ def backtracking_sudoku(boards_data):
                     all_rows.append(rows_fields[j].value)
             all_rows_as_string = ''.join(str(e) for e in all_rows)
             print('Is sudoku solved correctly?', all_rows_as_string == board.solution)
+    print('Total time for BT = ', total_time)
 
 
 def forward_checking_sudoku(boards_data):
@@ -62,13 +66,14 @@ def forward_checking_sudoku(boards_data):
                     all_rows.append(rows_fields[j].value)
             all_rows_as_string = ''.join(str(e) for e in all_rows)
             print('Is sudoku solved correctly?', all_rows_as_string == board.solution)
-    print('Total time for FC = ', total_time)
+    print('Total time for BT+FC = ', total_time)
 
 
 def main():
     task = read_sudoku(SUDOKU_FILE_PATH)
-    # backtracking_sudoku(task.boards_data)
-    print('------------------------------------------ FC ------------------------------------------')
+    print('------------------------------------------ BT ------------------------------------------')
+    backtracking_sudoku(task.boards_data)
+    print('------------------------------------------ BT+FC ------------------------------------------')
     forward_checking_sudoku(task.boards_data)
 
 

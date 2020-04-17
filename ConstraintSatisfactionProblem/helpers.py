@@ -4,34 +4,34 @@ from fields_helpers import find_empty_field, is_field_valid, find_best_field
 
 
 def backtracking(board):
-    empty_field = find_empty_field(board.rows)
+    empty_field = find_empty_field(board)
     if not empty_field:
         print('That is the last field!')
         return True
     else:
         field = empty_field
 
-    for i in range(1, 10):
-        if is_field_valid(board, field, i):
-            field.value = i
-            update_values(board, field, False, i)
+    for value in range(1, 10):
+        if is_field_valid(board, field, value):
+            field.value = value
+            update_values(board, field, value, False)
 
             if backtracking(board):
                 return True
             field.value = 0
             board.backtrack_steps += 1
-            update_values(board, field, True, i)
+            update_values(board, field, value, True)
 
     return False
 
 
 def forward_checking(board):
-    empty_field = find_best_field(board)
-    if not empty_field:
+    best_field = find_best_field(board)
+    if not best_field:
         print('That is the last field!')
         return True
     else:
-        field = empty_field
+        field = best_field
 
     for value in field.domain:
         field.value = value
