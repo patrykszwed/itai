@@ -1,5 +1,3 @@
-import numpy as np
-
 from domains_helpers import get_fields_values
 
 
@@ -17,7 +15,7 @@ class Field:
         for value in range(1, 10):
             if value not in domain_to_check:
                 initial_domain.append(value)
-        self.domain = np.asarray(initial_domain)
+        self.domain = initial_domain
 
     def print(self):
         print('Field location: [', self.x, ',', self.y, '], value:', self.value)
