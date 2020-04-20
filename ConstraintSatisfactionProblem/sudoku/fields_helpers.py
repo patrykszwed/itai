@@ -1,4 +1,4 @@
-from domains_helpers import get_fields_values
+from sudoku.domains_helpers import get_fields_values
 
 
 def is_field_valid(board, field, value):

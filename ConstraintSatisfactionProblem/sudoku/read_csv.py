@@ -1,6 +1,6 @@
 import numpy as np
 
-from Task import Task
+from sudoku.Task import Task
 
 
 def read_sudoku(input_file):

@@ -1,6 +1,6 @@
-from Board import update_values
-from domains_helpers import update_fields
-from fields_helpers import find_empty_field, is_field_valid, find_best_field
+from sudoku.Board import update_values
+from sudoku.domains_helpers import update_fields
+from sudoku.fields_helpers import find_empty_field, is_field_valid, find_best_field
 
 
 def backtracking(board):

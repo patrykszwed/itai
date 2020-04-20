@@ -1,9 +1,9 @@
 import numpy as np
 
-from Column import Column
-from Field import Field
-from Row import Row
-from Subgrid import Subgrid
+from sudoku.Column import Column
+from sudoku.Field import Field
+from sudoku.Row import Row
+from sudoku.Subgrid import Subgrid
 
 
 def update_subgrid(subgrid_fields, value, is_set_to_zero):

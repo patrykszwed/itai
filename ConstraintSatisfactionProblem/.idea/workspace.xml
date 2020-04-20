@@ -2,11 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4834d886-2a1e-4aca-91a8-e1462e3be6ae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/puzzle/Column.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/Crossword.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/Field.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/Row.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/fields_helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/puzzle_main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/read_csv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sudoku/Task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sudoku/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sudoku/read_csv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Field.py" beforeDir="false" afterPath="$PROJECT_DIR$/Field.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/Board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Column.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/Column.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Field.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/Field.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Row.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/Row.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subgrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/Subgrid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle/Task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/domains_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fields_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/fields_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku/sudoku_main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,21 +54,46 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/puzzle" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Studia\AI\ConstraintSatisfactionProblem\sudoku" />
+      <recent name="D:\Studia\AI\ConstraintSatisfactionProblem\puzzle" />
       <recent name="D:\Studia\AI\ConstraintSatisfactionProblem" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Studia\AI\ConstraintSatisfactionProblem\puzzle" />
       <recent name="D:\Studia\AI\ConstraintSatisfactionProblem" />
-      <recent name="D:\Studia\AI\ConstraintSatisfactionProblem\sudoku" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.puzzle_main">
+    <configuration name="puzzle_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ConstraintSatisfactionProblem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/puzzle" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/puzzle/puzzle_main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="sudoku_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <output_file path="$PROJECT_DIR$/../../Outputs/output.txt" is_save="true" />
       <module name="ConstraintSatisfactionProblem" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -62,7 +106,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Studia\AI\ConstraintSatisfactionProblem\sudoku_main.py" />
+      <option name="SCRIPT_NAME" value="D:\Studia\AI\ConstraintSatisfactionProblem\sudoku\sudoku_main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -73,6 +117,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.puzzle_main" />
         <item itemvalue="Python.sudoku_main" />
       </list>
     </recent_temporary>
@@ -95,7 +140,8 @@
       <workItem from="1586855396158" duration="13257000" />
       <workItem from="1586977526718" duration="27558000" />
       <workItem from="1587025087008" duration="67000" />
-      <workItem from="1587028738101" duration="5408000" />
+      <workItem from="1587028738101" duration="38465000" />
+      <workItem from="1587111958232" duration="32747000" />
     </task>
     <task id="LOCAL-00001" summary="Reading csv, Task and Game classes alpha">
       <created>1586651211133</created>
@@ -132,7 +178,91 @@
       <option name="project" value="LOCAL" />
       <updated>1587029020960</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Working FC but not working properly">
+      <created>1587034260834</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1587034260834</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Some small fixes">
+      <created>1587052318716</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1587052318716</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Slowly working FC - numpy version">
+      <created>1587068501789</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1587068501789</updated>
+    </task>
+    <task id="LOCAL-00009" summary="FC - &quot;working&quot;">
+      <created>1587077319799</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1587077319799</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Removed too much">
+      <created>1587077366451</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1587077366451</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Domains saved - FC not working">
+      <created>1587121969377</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1587121969377</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Finally working FC">
+      <created>1587124807411</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1587124807411</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Significant performance improvements for FC">
+      <created>1587125591986</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1587125591986</updated>
+    </task>
+    <task id="LOCAL-00014" summary="More improvements and cleanup of code">
+      <created>1587129581736</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1587129581736</updated>
+    </task>
+    <task id="LOCAL-00015" summary="One more improvement for Sudoku">
+      <created>1587129828612</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1587129828612</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Final version for Sudoku (BT and BT+FC)">
+      <created>1587130983280</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1587130983280</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Final version for Sudoku (BT and BT+FC) - some bugfixes and improvements">
+      <created>1587134450956</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1587134450956</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,69 +274,90 @@
     <MESSAGE value="Sudoku backtracking beta" />
     <MESSAGE value="Some fixes in backtracking and broken forward checking" />
     <MESSAGE value="More classes and forward checking is still not working" />
-    <option name="LAST_COMMIT_MESSAGE" value="More classes and forward checking is still not working" />
+    <MESSAGE value="Working FC but not working properly" />
+    <MESSAGE value="Some small fixes" />
+    <MESSAGE value="Slowly working FC - numpy version" />
+    <MESSAGE value="FC - &quot;working&quot;" />
+    <MESSAGE value="Removed too much" />
+    <MESSAGE value="Domains saved - FC not working" />
+    <MESSAGE value="Finally working FC" />
+    <MESSAGE value="Significant performance improvements for FC" />
+    <MESSAGE value="More improvements and cleanup of code" />
+    <MESSAGE value="One more improvement for Sudoku" />
+    <MESSAGE value="Final version for Sudoku (BT and BT+FC)" />
+    <MESSAGE value="Final version for Sudoku (BT and BT+FC) - some bugfixes and improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final version for Sudoku (BT and BT+FC) - some bugfixes and improvements" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="414" y="235" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587063248740">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="414" y="235" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587063248740" />
     <state x="640" y="316" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1586855269483">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="640" y="316" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586855269483" />
-    <state x="585" y="174" key="CommitChangelistDialog2" timestamp="1587029019784">
+    <state x="585" y="174" key="CommitChangelistDialog2" timestamp="1587134450160">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="585" y="174" key="CommitChangelistDialog2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587029019784" />
-    <state width="1877" height="334" key="GridCell.Tab.0.bottom" timestamp="1587034157432">
+    <state x="585" y="174" key="CommitChangelistDialog2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587134450160" />
+    <state x="740" y="321" key="FileChooserDialogImpl" timestamp="1587063247344">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587034157432" />
-    <state width="1877" height="334" key="GridCell.Tab.0.center" timestamp="1587034157431">
+    <state x="740" y="321" key="FileChooserDialogImpl/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587063247344" />
+    <state width="1877" height="420" key="GridCell.Tab.0.bottom" timestamp="1587425294312">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587034157431" />
-    <state width="1877" height="334" key="GridCell.Tab.0.left" timestamp="1587034157431">
+    <state width="1877" height="420" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587425294312" />
+    <state width="1877" height="420" key="GridCell.Tab.0.center" timestamp="1587425294312">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587034157431" />
-    <state width="1877" height="334" key="GridCell.Tab.0.right" timestamp="1587034157431">
+    <state width="1877" height="420" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587425294312" />
+    <state width="1877" height="420" key="GridCell.Tab.0.left" timestamp="1587425294312">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="334" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587034157431" />
-    <state width="1877" height="339" key="GridCell.Tab.1.bottom" timestamp="1587030571756">
+    <state width="1877" height="420" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587425294312" />
+    <state width="1877" height="420" key="GridCell.Tab.0.right" timestamp="1587425294312">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="339" key="GridCell.Tab.1.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587030571756" />
-    <state width="1877" height="339" key="GridCell.Tab.1.center" timestamp="1587030571756">
+    <state width="1877" height="420" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587425294312" />
+    <state width="1877" height="505" key="GridCell.Tab.1.bottom" timestamp="1587133093905">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="339" key="GridCell.Tab.1.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587030571756" />
-    <state width="1877" height="339" key="GridCell.Tab.1.left" timestamp="1587030571755">
+    <state width="1877" height="505" key="GridCell.Tab.1.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587133093905" />
+    <state width="1877" height="505" key="GridCell.Tab.1.center" timestamp="1587133093905">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="339" key="GridCell.Tab.1.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587030571755" />
-    <state width="1877" height="339" key="GridCell.Tab.1.right" timestamp="1587030571756">
+    <state width="1877" height="505" key="GridCell.Tab.1.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587133093905" />
+    <state width="1877" height="505" key="GridCell.Tab.1.left" timestamp="1587133093905">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="339" key="GridCell.Tab.1.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587030571756" />
-    <state x="707" y="211" key="SettingsEditor" timestamp="1586977559776">
+    <state width="1877" height="505" key="GridCell.Tab.1.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587133093905" />
+    <state width="1877" height="505" key="GridCell.Tab.1.right" timestamp="1587133093905">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="707" y="211" key="SettingsEditor/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586977559776" />
-    <state x="552" y="313" key="Vcs.Push.Dialog.v2" timestamp="1587029034788">
+    <state width="1877" height="505" key="GridCell.Tab.1.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587133093905" />
+    <state x="707" y="211" key="SettingsEditor" timestamp="1587425701532">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="313" key="Vcs.Push.Dialog.v2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587029034788" />
+    <state x="707" y="211" key="SettingsEditor/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587425701532" />
+    <state x="552" y="313" key="Vcs.Push.Dialog.v2" timestamp="1587134451969">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="552" y="313" key="Vcs.Push.Dialog.v2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587134451969" />
     <state x="661" y="404" key="com.intellij.ide.util.TipDialog" timestamp="1586640448912">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="661" y="404" key="com.intellij.ide.util.TipDialog/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586640448912" />
-    <state x="656" y="178" width="607" height="804" key="find.popup" timestamp="1587034142872">
+    <state x="656" y="178" width="607" height="804" key="find.popup" timestamp="1587133681143">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="656" y="178" width="607" height="804" key="find.popup/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587034142872" />
+    <state x="656" y="178" width="607" height="804" key="find.popup/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587133681143" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1586712462404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku_main.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1587034157412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$puzzle_main.coverage" NAME="puzzle_main Coverage Results" MODIFIED="1587425176086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/puzzle" />
+    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku_main.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1587423425411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$main.coverage" NAME="main Coverage Results" MODIFIED="1586280665746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

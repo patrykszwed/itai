@@ -1,10 +1,10 @@
 import time
 
-from Board import Board
 from constants import SUDOKU_FILE_PATH
-from domains_helpers import init_fields_domains
-from helpers import backtracking, forward_checking
-from read_csv import read_sudoku
+from sudoku.Board import Board
+from sudoku.domains_helpers import init_fields_domains
+from sudoku.helpers import backtracking, forward_checking
+from sudoku.read_csv import read_sudoku
 
 
 def backtracking_sudoku(boards_data):
