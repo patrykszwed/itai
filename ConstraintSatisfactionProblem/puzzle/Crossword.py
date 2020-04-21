@@ -10,15 +10,11 @@ def update_values(crossword, fields, word, is_set_to_zero):
         column.fields[field.y].value = '_' if is_set_to_zero else word[i]
         row = crossword.rows[field.y]
         row.fields[field.x].value = '_' if is_set_to_zero else word[i]
-
-
-def get_fields(rows):
-    fields = []
-    for i in range(9):
-        row_fields = rows[i].fields
-        for j in range(len(row_fields)):
-            fields.append(row_fields[j])
-    return fields
+    if is_set_to_zero:
+        crossword.words.append(word)
+        crossword.words.sort(key=len, reverse=True)
+    else:
+        crossword.words.remove(word)
 
 
 class Crossword:
@@ -30,11 +26,12 @@ class Crossword:
         # print('self.number_of_columns', self.number_of_columns)
         self.difficulty = difficulty
         self.rows = self.get_rows(crossword_data)
-        self.columns = self.get_columns(self.rows)
+        self.columns = self.get_columns()
         # print('self.columns', self.columns)
         words_data.sort(key=len, reverse=True)
         self.words = [word for word in words_data]
         print('self.words', self.words)
+        self.fields = self.get_fields()
 
     def get_rows(self, crossword_data):
         rows = []
@@ -45,7 +42,8 @@ class Crossword:
             rows.append(Row(i, fields))
         return rows
 
-    def get_columns(self, rows):
+    def get_columns(self):
+        rows = self.rows
         fields = []
         for i in range(self.number_of_columns):
             fields.append([])
@@ -57,6 +55,13 @@ class Crossword:
         for i in range(self.number_of_columns):
             columns.append(Column(i, fields[i]))
         return columns
+
+    def get_fields(self):
+        fields = []
+        for row in self.rows:
+            for field in row.fields:
+                fields.append(field)
+        return fields
 
     difficulty = 0
     columns = []

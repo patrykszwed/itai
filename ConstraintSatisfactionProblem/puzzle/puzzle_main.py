@@ -9,7 +9,7 @@ def backtracking_puzzle(crosswords_data, words_data):
     total_time = 0
     # for i in range(len(crosswords_data)):
     start_time = time.time()
-    crossword = Crossword(crosswords_data[0], words_data[0], 0)
+    crossword = Crossword(crosswords_data[4], words_data[4], 4)
     print('------------- INITIAL CROSSWORD - DIFFICULTY LEVEL =', crossword.difficulty, '-----------------')
     print_crossword(crossword.rows)
     results = backtracking(crossword)

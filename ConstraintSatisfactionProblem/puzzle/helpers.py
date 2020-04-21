@@ -7,22 +7,24 @@ def backtracking(crossword):
     if not empty_fields:
         print('There is no more empty space!')
         return True
-    else:
-        fields = empty_fields
 
+    # print('crossword.words', crossword.words)
+    # print('len(empty_fields)', len(empty_fields))
     for word in crossword.words:
-        if is_word_valid(fields, word):
-            for i in range(len(word)):
-                fields[i].value = word[i]
-            update_values(crossword, fields, word, False)
-            print_crossword(crossword.rows)
+        # print('word', word)
+        for fields in empty_fields:
+            if is_word_valid(fields, word):
+                for i in range(len(word)):
+                    fields[i].value = word[i]
+                update_values(crossword, fields, word, False)
+                print_crossword(crossword.rows)
 
-            if backtracking(crossword):
-                return True
-            for i in range(len(word)):
-                fields[i].value = '_'
-            crossword.backtrack_steps += 1
-            update_values(crossword, fields, word, True)
+                if backtracking(crossword):
+                    return True
+                for i in range(len(word)):
+                    fields[i].value = '_'
+                crossword.backtrack_steps += 1
+                update_values(crossword, fields, word, True)
 
     return False
 
