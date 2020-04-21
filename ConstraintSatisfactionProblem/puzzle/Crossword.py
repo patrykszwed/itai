@@ -7,12 +7,12 @@ def update_values(crossword, fields, word, is_set_to_zero):
     for i in range(len(fields)):
         field = fields[i]
         column = crossword.columns[field.x]
-        column.fields[field.y].value = '_' if is_set_to_zero else word[i]
+        column.fields[field.y].value = field.value if is_set_to_zero else word[i]
         row = crossword.rows[field.y]
-        row.fields[field.x].value = '_' if is_set_to_zero else word[i]
+        row.fields[field.x].value = field.value if is_set_to_zero else word[i]
     if is_set_to_zero:
         crossword.words.append(word)
-        crossword.words.sort(key=len, reverse=True)
+        # crossword.words.sort(key=len, reverse=True)
     else:
         crossword.words.remove(word)
 
@@ -30,7 +30,6 @@ class Crossword:
         # print('self.columns', self.columns)
         words_data.sort(key=len, reverse=True)
         self.words = [word for word in words_data]
-        print('self.words', self.words)
         self.fields = self.get_fields()
 
     def get_rows(self, crossword_data):
