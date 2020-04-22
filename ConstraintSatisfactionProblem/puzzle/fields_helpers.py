@@ -1,17 +1,10 @@
 def is_word_valid(fields, word):
-    if word == 'EVO':
-        print('IS VALID? EVO!')
-        print('len(fields)', len(fields))
     if len(fields) == len(word):
         for i in range(len(fields)):
             field = fields[i]
-            # field.print()
             if field.value != '_' and field.value != word[i]:
-                # print('1 INVALID word', word)
                 return False
-        # print('VALID word', word)
         return True
-    # print('2 INVALID word', word)
     return False
 
 
@@ -44,19 +37,10 @@ def is_word_anywhere_on_the_board(crossword, word):
     rows_filled_fields = find_filled_fields_in_structure(crossword.rows, word)
     columns_filled_fields = find_filled_fields_in_structure(crossword.columns, word)
     filled_fields = rows_filled_fields + columns_filled_fields
-    # if word == 'GI':
-    #     print('is_word_anywhere_on_the_board', word)
-    #     print('len(filled_fields)', len(filled_fields))
-    if word == 'EVO':
-        print('is_word_anywhere_on_the_board', word)
-        print('len(filled_fields)', len(filled_fields))
     for fields in filled_fields:
         is_found = True
         for i in range(len(fields)):
             field = fields[i]
-            if word == 'EVO':
-                field.print()
-                print('is_word_anywhere_on_the_board', field.value)
             if field.value != word[i]:
                 is_found = False
                 break
@@ -96,7 +80,6 @@ def find_empty_fields_in_structure(structure, word_length):
 
 def check_if_crossword_is_filled(crossword):
     for field in crossword.fields:
-        # print('field.value', field.value)
         if field.value == '_':
             return False
     return True
