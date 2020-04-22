@@ -10,11 +10,6 @@ def update_values(crossword, fields, word, is_set_to_zero):
         column.fields[field.y].value = field.value if is_set_to_zero else word[i]
         row = crossword.rows[field.y]
         row.fields[field.x].value = field.value if is_set_to_zero else word[i]
-    if is_set_to_zero:
-        crossword.words.append(word)
-        # crossword.words.sort(key=len, reverse=True)
-    else:
-        crossword.words.remove(word)
 
 
 class Crossword:

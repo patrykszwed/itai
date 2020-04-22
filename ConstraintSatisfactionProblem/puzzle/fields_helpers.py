@@ -5,13 +5,13 @@ def is_word_valid(fields, word):
     if len(fields) == len(word):
         for i in range(len(fields)):
             field = fields[i]
-            field.print()
+            # field.print()
             if field.value != '_' and field.value != word[i]:
-                print('1 INVALID word', word)
+                # print('1 INVALID word', word)
                 return False
-        print('VALID word', word)
+        # print('VALID word', word)
         return True
-    print('2 INVALID word', word)
+    # print('2 INVALID word', word)
     return False
 
 
@@ -31,6 +31,13 @@ def find_filled_fields_in_structure(structure, word):
             filled_fields.append(fields)
         fields = []
     return filled_fields
+
+
+def all_words_are_on_the_board(crossword):
+    for word in crossword.words:
+        if not is_word_anywhere_on_the_board(crossword, word):
+            return False
+    return True
 
 
 def is_word_anywhere_on_the_board(crossword, word):
@@ -97,14 +104,7 @@ def check_if_crossword_is_filled(crossword):
 
 def find_empty_fields(crossword, word):
     word_length = len(word)
-    is_crossword_filled = check_if_crossword_is_filled(crossword)
-    # print('is_crossword_filled', is_crossword_filled)
-    if is_crossword_filled:
-        return None
     rows_empty_fields = find_empty_fields_in_structure(crossword.rows, word_length)
     columns_empty_fields = find_empty_fields_in_structure(crossword.columns, word_length)
-    # print('rows_empty_fields', rows_empty_fields)
-    # print('len(rows_empty_fields)', len(rows_empty_fields))
     crossword_empty_fields = rows_empty_fields + columns_empty_fields
-    # print('crossword_empty_fields', crossword_empty_fields)
     return crossword_empty_fields

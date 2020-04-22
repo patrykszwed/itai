@@ -15,9 +15,6 @@ class Field:
     #     self.domain = initial_domain
 
     def add_word_to_contained_words(self, word):
-        if self.y == 2 and self.x == 2:
-            print('Y = 2 add word', word)
-            print('self.contained_words', self.contained_words)
         if word not in self.contained_words:
             self.contained_words.append(word)
 
