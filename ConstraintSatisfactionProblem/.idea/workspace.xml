@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4834d886-2a1e-4aca-91a8-e1462e3be6ae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/puzzle/Word.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/puzzle/domains_helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle/Crossword.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle/Crossword.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle/fields_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle/fields_helpers.py" afterDir="false" />
@@ -127,7 +129,7 @@
       <workItem from="1587028738101" duration="38465000" />
       <workItem from="1587111958232" duration="33691000" />
       <workItem from="1587483407882" duration="17722000" />
-      <workItem from="1587515207718" duration="606000" />
+      <workItem from="1587515207718" duration="17397000" />
     </task>
     <task id="LOCAL-00001" summary="Reading csv, Task and Game classes alpha">
       <created>1586651211133</created>
@@ -276,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587515175642</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Cleanup and checks after crossword is solved">
+      <created>1587516051169</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1587516051169</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +313,8 @@
     <MESSAGE value="Changes in Crosswords" />
     <MESSAGE value="1 level - working, 0 - broken" />
     <MESSAGE value="0,1,2,4 - working ? 3 - broken" />
-    <option name="LAST_COMMIT_MESSAGE" value="0,1,2,4 - working ? 3 - broken" />
+    <MESSAGE value="Cleanup and checks after crossword is solved" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup and checks after crossword is solved" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="235" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587063248740">
@@ -315,66 +325,74 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="640" y="316" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586855269483" />
-    <state x="585" y="174" key="CommitChangelistDialog2" timestamp="1587515174655">
+    <state x="585" y="174" key="CommitChangelistDialog2" timestamp="1587516050238">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="585" y="174" key="CommitChangelistDialog2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515174655" />
+    <state x="585" y="174" key="CommitChangelistDialog2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587516050238" />
     <state x="740" y="321" key="FileChooserDialogImpl" timestamp="1587063247344">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="321" key="FileChooserDialogImpl/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587063247344" />
-    <state width="1877" height="345" key="GridCell.Tab.0.bottom" timestamp="1587515473398">
+    <state width="1877" height="530" key="GridCell.Tab.0.bottom" timestamp="1587597215917">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="345" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515473398" />
-    <state width="1877" height="345" key="GridCell.Tab.0.center" timestamp="1587515473397">
+    <state width="1877" height="530" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587597215917" />
+    <state width="1877" height="530" key="GridCell.Tab.0.center" timestamp="1587597215917">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="345" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515473397" />
-    <state width="1877" height="345" key="GridCell.Tab.0.left" timestamp="1587515473397">
+    <state width="1877" height="530" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587597215917" />
+    <state width="1877" height="530" key="GridCell.Tab.0.left" timestamp="1587597215917">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="345" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515473397" />
-    <state width="1877" height="345" key="GridCell.Tab.0.right" timestamp="1587515473397">
+    <state width="1877" height="530" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587597215916" />
+    <state width="1877" height="530" key="GridCell.Tab.0.right" timestamp="1587597215917">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="345" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515473397" />
-    <state width="1877" height="505" key="GridCell.Tab.1.bottom" timestamp="1587515185953">
+    <state width="1877" height="530" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587597215917" />
+    <state width="1877" height="505" key="GridCell.Tab.1.bottom" timestamp="1587569202985">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="505" key="GridCell.Tab.1.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515185953" />
-    <state width="1877" height="505" key="GridCell.Tab.1.center" timestamp="1587515185953">
+    <state width="1877" height="505" key="GridCell.Tab.1.bottom/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587569202985" />
+    <state width="1877" height="505" key="GridCell.Tab.1.center" timestamp="1587569202985">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="505" key="GridCell.Tab.1.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515185953" />
-    <state width="1877" height="505" key="GridCell.Tab.1.left" timestamp="1587515185953">
+    <state width="1877" height="505" key="GridCell.Tab.1.center/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587569202985" />
+    <state width="1877" height="505" key="GridCell.Tab.1.left" timestamp="1587569202985">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="505" key="GridCell.Tab.1.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515185953" />
-    <state width="1877" height="505" key="GridCell.Tab.1.right" timestamp="1587515185953">
+    <state width="1877" height="505" key="GridCell.Tab.1.left/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587569202985" />
+    <state width="1877" height="505" key="GridCell.Tab.1.right" timestamp="1587569202985">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="505" key="GridCell.Tab.1.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515185953" />
+    <state width="1877" height="505" key="GridCell.Tab.1.right/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587569202985" />
     <state x="707" y="211" key="SettingsEditor" timestamp="1587426091582">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="707" y="211" key="SettingsEditor/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587426091582" />
-    <state x="552" y="313" key="Vcs.Push.Dialog.v2" timestamp="1587515177561">
+    <state x="552" y="313" key="Vcs.Push.Dialog.v2" timestamp="1587516052802">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="313" key="Vcs.Push.Dialog.v2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515177561" />
+    <state x="552" y="313" key="Vcs.Push.Dialog.v2/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587516052802" />
     <state x="661" y="404" key="com.intellij.ide.util.TipDialog" timestamp="1586640448912">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="661" y="404" key="com.intellij.ide.util.TipDialog/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1586640448912" />
-    <state x="656" y="178" width="607" height="804" key="find.popup" timestamp="1587515727962">
+    <state x="563" y="190" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587593552051">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="656" y="178" width="607" height="804" key="find.popup/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587515727962" />
+    <state x="563" y="190" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587593552051" />
+    <state x="656" y="178" width="607" height="804" key="find.popup" timestamp="1587593556213">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="656" y="178" width="607" height="804" key="find.popup/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587593556213" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1587591354816">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.832/0.0.1920.1160@0.0.1920.1160" timestamp="1587591354816" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1586712462404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$puzzle_main.coverage" NAME="puzzle_main Coverage Results" MODIFIED="1587515783886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/puzzle" />
+    <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$puzzle_main.coverage" NAME="puzzle_main Coverage Results" MODIFIED="1587597837825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/puzzle" />
     <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$sudoku_main.coverage" NAME="sudoku_main Coverage Results" MODIFIED="1587423425411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ConstraintSatisfactionProblem$main.coverage" NAME="main Coverage Results" MODIFIED="1586280665746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

@@ -1,6 +1,7 @@
 from puzzle.Column import Column
 from puzzle.Field import Field
 from puzzle.Row import Row
+from puzzle.Word import Word
 
 
 def update_values(crossword, fields, word, is_set_to_zero):
@@ -12,6 +13,14 @@ def update_values(crossword, fields, word, is_set_to_zero):
         row.fields[field.x].value = field.value if is_set_to_zero else word[i]
 
 
+def sort_crossword_words_by_domain(crossword):
+    crossword.words.sort(key=lambda word: word.domain)
+
+
+def sort_crossword_words_by_length(crossword):
+    crossword.words.sort(key=lambda word: len(word.value), reverse=True)
+
+
 class Crossword:
     def __init__(self, crossword_data, words_data, difficulty):
         self.number_of_rows = len(crossword_data)
@@ -19,8 +28,7 @@ class Crossword:
         self.difficulty = difficulty
         self.rows = self.get_rows(crossword_data)
         self.columns = self.get_columns()
-        words_data.sort(key=len, reverse=True)
-        self.words = [word for word in words_data]
+        self.words = [Word(word) for word in words_data]
         self.fields = self.get_fields()
 
     def get_rows(self, crossword_data):

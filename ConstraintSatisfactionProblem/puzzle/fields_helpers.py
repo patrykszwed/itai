@@ -8,6 +8,14 @@ def is_word_valid(fields, word):
     return False
 
 
+def all_words_are_on_the_board(crossword):
+    for word in crossword.words:
+        word_value = word.value
+        if not is_word_anywhere_on_the_board(crossword, word_value):
+            return False
+    return True
+
+
 def find_filled_fields_in_structure(structure, word):
     word_length = len(word)
     fields = []
@@ -26,27 +34,43 @@ def find_filled_fields_in_structure(structure, word):
     return filled_fields
 
 
-def all_words_are_on_the_board(crossword):
-    for word in crossword.words:
-        if not is_word_anywhere_on_the_board(crossword, word):
-            return False
-    return True
+def is_field_in_structure(structure, word):
+    # print('is_field_in_structure', word)
+    word_length = len(word)
+    for elem in structure:
+        fields = []
+        for field in elem.fields:
+            if field.value != '#':
+                fields.append(field)
+            else:
+                if len(fields) == word_length:
+                    is_found = True
+                    for i in range(len(fields)):
+                        if fields[i].value != word[i]:
+                            is_found = False
+                            break
+                    # print('RETURN TRUE1')
+                    if is_found:
+                        return True
+                fields = []
+        if len(fields) == word_length:
+            is_found = True
+            for i in range(len(fields)):
+                if fields[i].value != word[i]:
+                    is_found = False
+                    break
+            # print('RETURN TRUE2')
+            if is_found:
+                return True
+    return False
 
 
 def is_word_anywhere_on_the_board(crossword, word):
-    rows_filled_fields = find_filled_fields_in_structure(crossword.rows, word)
-    columns_filled_fields = find_filled_fields_in_structure(crossword.columns, word)
-    filled_fields = rows_filled_fields + columns_filled_fields
-    for fields in filled_fields:
-        is_found = True
-        for i in range(len(fields)):
-            field = fields[i]
-            if field.value != word[i]:
-                is_found = False
-                break
-        if is_found:
-            return True
-    return False
+    is_field_in_rows = is_field_in_structure(crossword.rows, word)
+    if is_field_in_rows:
+        # print('IN ROWS RETURN TRUE')
+        return True
+    return is_field_in_structure(crossword.columns, word)
 
 
 def is_all_fields_filled(fields):
