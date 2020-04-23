@@ -1,4 +1,4 @@
-from puzzle.fields_helpers import find_empty_fields, is_word_anywhere_on_the_board
+from puzzle.fields_helpers import find_empty_fields
 
 
 def init_words_domains(crossword):
@@ -12,11 +12,8 @@ class Word:
         self.domain = 0
 
     def init_domain(self, crossword):
-        if is_word_anywhere_on_the_board(crossword, self.value):
-            self.domain = []
-        else:
-            empty_fields = find_empty_fields(crossword, self.value)
-            self.domain = empty_fields
+        empty_fields = find_empty_fields(crossword, self.value)
+        self.domain = empty_fields
 
     value = 0
     domain = []

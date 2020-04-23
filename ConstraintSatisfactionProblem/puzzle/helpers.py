@@ -71,8 +71,8 @@ def forward_checking(crossword):
                 for fields in empty_fields:
                     if is_word_valid(fields, word_value):
                         used_words.append(word_value)
-                        update_values(crossword, fields, word_value, False)
                         is_wipe_out = update_words(crossword, fields, word, True)
+                        update_values(crossword, fields, word_value, False)
 
                         if not is_wipe_out:
                             if forward_checking(crossword):

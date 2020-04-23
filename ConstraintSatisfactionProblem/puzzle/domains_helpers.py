@@ -14,8 +14,6 @@ def update_words(crossword, fields_to_check, word, check_for_wipe_out):
                       len(word.value) == len(word_value) and word.value != word_value}
     if check_for_wipe_out:
         word.domain = []
-        print('word_value', word_value)
-        [print('words_to_check_value', word_to_check.value) for word_to_check in words_to_check]
         if is_domain_wipe_out(words_to_check, fields_to_check):
             return True
     update_words_domains(crossword, words_to_check)

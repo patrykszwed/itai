@@ -44,11 +44,11 @@ def is_field_in_structure(structure, word):
     return False
 
 
-def is_word_anywhere_on_the_board(crossword, word):
-    is_field_in_rows = is_field_in_structure(crossword.rows, word)
+def is_word_anywhere_on_the_board(crossword, word_value):
+    is_field_in_rows = is_field_in_structure(crossword.rows, word_value)
     if is_field_in_rows:
         return True
-    return is_field_in_structure(crossword.columns, word)
+    return is_field_in_structure(crossword.columns, word_value)
 
 
 def is_all_fields_filled(fields):
@@ -96,11 +96,15 @@ def find_empty_fields(crossword, word):
 
 
 def are_fields_the_same(word_fields, fields_to_check):
+    """check for empty fields"""
+    for i in range(len(word_fields)):
+        if word_fields[i] != '_':
+            return False
     for i in range(len(word_fields)):
         word_field = word_fields[i]
         field_to_check = fields_to_check[i]
-        word_field.print()
-        field_to_check.print()
+        # word_field.print()
+        # field_to_check.print()
         if word_field != field_to_check:
             return False
     return True
