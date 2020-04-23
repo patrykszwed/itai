@@ -3,16 +3,7 @@ class Field:
         self.value = value
         self.x = x
         self.y = y
-        self.domain = []
         self.contained_words = []
-
-    # def calculate_domain(self, row, column, subgrid):
-    #     initial_domain = []
-    #     domain_to_check = get_fields_values(row) + get_fields_values(column) + get_fields_values(subgrid)
-    #     for value in range(1, 10):
-    #         if value not in domain_to_check:
-    #             initial_domain.append(value)
-    #     self.domain = initial_domain
 
     def add_word_to_contained_words(self, word):
         if word not in self.contained_words:
@@ -29,4 +20,3 @@ class Field:
     x = 0
     y = 0
     contained_words = []
-    domain = 0

@@ -1,6 +1,6 @@
 import time
 
-from puzzle.Crossword import Crossword
+from puzzle.Crossword import Crossword, sort_crossword_words_by_length
 from puzzle.Word import init_words_domains
 from puzzle.fields_helpers import all_words_are_on_the_board
 from puzzle.helpers import print_crossword, backtracking, forward_checking
@@ -14,7 +14,7 @@ def backtracking_puzzle(crosswords_data, words_data):
             continue
         start_time = time.time()
         crossword = Crossword(crosswords_data[i], words_data[i], i)
-        # sort_crossword_words_by_length(crossword)
+        sort_crossword_words_by_length(crossword)
         print('------------- INITIAL CROSSWORD - DIFFICULTY LEVEL =', crossword.difficulty, '-----------------')
         print_crossword(crossword.rows)
         results = backtracking(crossword)
@@ -69,8 +69,8 @@ def forward_checking_puzzle(crosswords_data, words_data):
 
 def main():
     task = read_puzzle()
-    # print('------------------------------------------ BT ------------------------------------------')
-    # backtracking_puzzle(task.crosswords_data, task.words_data)
+    print('------------------------------------------ BT ------------------------------------------')
+    backtracking_puzzle(task.crosswords_data, task.words_data)
     print('------------------------------------------ BT+FC ------------------------------------------')
     forward_checking_puzzle(task.crosswords_data, task.words_data)
 

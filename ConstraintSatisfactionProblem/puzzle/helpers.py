@@ -25,20 +25,11 @@ def backtracking(crossword):
                 for fields in empty_fields:
                     if is_word_valid(fields, word_value):
                         used_words.append(word_value)
-                        for i in range(len(word_value)):
-                            field = fields[i]
-                            field.add_word_to_contained_words(word_value)
-                            field.value = word_value[i]
                         update_values(crossword, fields, word_value, False)
 
                         if backtracking(crossword):
                             return True
 
-                        for i in range(len(word_value)):
-                            field = fields[i]
-                            field.remove_word_from_contained_words(word_value)
-                            if len(field.contained_words) == 0:
-                                field.value = '_'
                         crossword.backtrack_steps += 1
                         update_values(crossword, fields, word_value, True)
         if not is_word_anywhere_on_the_board(crossword, word_value):
@@ -70,42 +61,26 @@ def forward_checking(crossword):
 
     used_words = []
     for i in range(len(crossword.words)):
-        # print_crossword(crossword.rows)
         word = get_best_word(crossword)
         word_value = word.value
-        # print('word_value', word_value)
         if word_value not in used_words:
-            # print('used_words', used_words)
             if is_word_anywhere_on_the_board(crossword, word_value):
                 used_words.append(word_value)
             else:
                 empty_fields = find_empty_fields(crossword, word_value)
                 for fields in empty_fields:
                     if is_word_valid(fields, word_value):
-                        # print('VALID WORD')
                         used_words.append(word_value)
-                        for j in range(len(word_value)):
-                            field = fields[j]
-                            field.add_word_to_contained_words(word_value)
-                            field.value = word_value[j]
                         update_values(crossword, fields, word_value, False)
-                        is_wipe_out = update_words(crossword, fields, word_value, True)
-                        # print('is_wipe_out', is_wipe_out)
-                        # print_crossword(crossword.rows)
+                        is_wipe_out = update_words(crossword, fields, word, True)
 
                         if not is_wipe_out:
                             if forward_checking(crossword):
                                 return True
 
-                        for j in range(len(word_value)):
-                            field = fields[j]
-                            field.remove_word_from_contained_words(word_value)
-                            if len(field.contained_words) == 0:
-                                field.value = '_'
-                        # print('backtrack')
                         crossword.backtrack_steps += 1
                         update_values(crossword, fields, word_value, True)
-                        update_words(crossword, fields, word_value, False)
+                        update_words(crossword, fields, word, False)
         if not is_word_anywhere_on_the_board(crossword, word_value):
             return False
 

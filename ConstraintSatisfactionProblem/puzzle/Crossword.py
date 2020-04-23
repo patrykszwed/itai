@@ -4,13 +4,19 @@ from puzzle.Row import Row
 from puzzle.Word import Word
 
 
-def update_values(crossword, fields, word, is_set_to_zero):
+def update_values(crossword, fields, word_value, is_set_to_zero):
     for i in range(len(fields)):
         field = fields[i]
         column = crossword.columns[field.x]
-        column.fields[field.y].value = field.value if is_set_to_zero else word[i]
+        column.fields[field.y].value = field.value if is_set_to_zero else word_value[i]
         row = crossword.rows[field.y]
-        row.fields[field.x].value = field.value if is_set_to_zero else word[i]
+        row.fields[field.x].value = field.value if is_set_to_zero else word_value[i]
+        if is_set_to_zero:
+            field.remove_word_from_contained_words(word_value)
+            if len(field.contained_words) == 0:
+                field.value = '_'
+        else:
+            field.add_word_to_contained_words(word_value)
 
 
 def sort_crossword_words_by_domain(crossword):
