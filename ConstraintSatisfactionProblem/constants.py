@@ -1,1 +1,1 @@
-SUDOKU_FILE_PATH = './data/SudokuTests.csv'
+SUDOKU_FILE_PATH = 'D:\Studia\AI\ConstraintSatisfactionProblem\data\SudokuTests.csv'
