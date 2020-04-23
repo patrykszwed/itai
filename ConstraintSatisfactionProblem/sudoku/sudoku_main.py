@@ -10,8 +10,6 @@ from sudoku.read_csv import read_sudoku
 def backtracking_sudoku(boards_data):
     total_time = 0
     for i in range(len(boards_data)):
-        if i != 9:
-            continue
         board_data = boards_data[i]
         start_time = time.time()
         board = Board(board_data)
@@ -42,8 +40,6 @@ def backtracking_sudoku(boards_data):
 def forward_checking_sudoku(boards_data):
     total_time = 0
     for i in range(len(boards_data)):
-        if i != 9:
-            continue
         board_data = boards_data[i]
         start_time = time.time()
         board = Board(board_data)
