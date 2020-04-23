@@ -9,8 +9,10 @@ from sudoku.read_csv import read_sudoku
 
 def backtracking_sudoku(boards_data):
     total_time = 0
-    for board_data in boards_data:
-        # board_data = boards_data[0]
+    for i in range(len(boards_data)):
+        if i != 9:
+            continue
+        board_data = boards_data[i]
         start_time = time.time()
         board = Board(board_data)
         print('------------- INITIAL SUDOKU - DIFFICULTY LEVEL =', board.difficulty, '-----------------')
@@ -39,8 +41,10 @@ def backtracking_sudoku(boards_data):
 
 def forward_checking_sudoku(boards_data):
     total_time = 0
-    for board_data in boards_data:
-        # board_data = boards_data[0]
+    for i in range(len(boards_data)):
+        if i != 9:
+            continue
+        board_data = boards_data[i]
         start_time = time.time()
         board = Board(board_data)
         init_fields_domains(board)
