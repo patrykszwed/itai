@@ -44,6 +44,7 @@ class Board:
     def __init__(self):
         self.set_players()
         self.fields = get_fields(self.players)
+        self.current_depth = 0
 
     def set_players(self):
         self.players.append(Player(PLAYER_NAMES['P1']))
@@ -51,3 +52,4 @@ class Board:
 
     fields = []
     players = []
+    current_depth = 0
