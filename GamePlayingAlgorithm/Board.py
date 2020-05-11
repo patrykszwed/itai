@@ -1,6 +1,6 @@
 from Field import Field
 from Player import Player
-from constants import PLAYER_NAMES, EMPTY_FIELD
+from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END
 
 
 def place_players_pieces(fields, players):
@@ -29,9 +29,9 @@ def place_players_pieces(fields, players):
 def get_fields(players):
     all_fields = []
     index = 0
-    for i in range(10):
+    for i in range(BOARD_END + 1):
         fields = []
-        for j in range(10):
+        for j in range(BOARD_END + 1):
             initial_value = '_' if (i + j) % 2 != 0 else ' '
             fields.append(Field(initial_value, j, i))
             index += 1

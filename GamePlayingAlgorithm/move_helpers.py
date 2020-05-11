@@ -1,6 +1,6 @@
 from Move import Move
 from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START
-from helpers import get_player_name_to_capture
+from helpers import get_player_name_to_capture, print_board_fields
 
 
 def get_player_to_move(board, prev_player):
@@ -11,15 +11,30 @@ def get_direction_of_x_for_move(move):
     return move.x - move.piece.x
 
 
-def move_single_piece(fields, player, move):
-    # print('move_single_piece for player', player.name, 'move', move)
-    direction_of_x = get_direction_of_x_for_move(move)
-    is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player, direction_of_x)
-    # print('move_single_piece - is_capture_possible', is_capture_possible)
-    if is_capture_possible:
-        capture_move(move, fields, player, direction_of_x)
+def move_single_piece(fields, player, move, is_final_move=False):
+    if is_final_move:
+        print('move_single_piece for player', player.name, 'move')
+        direction_of_x = get_direction_of_x_for_move(move)
+        is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player, direction_of_x)
+        print('move_single_piece - is_capture_possible', is_capture_possible)
+        if is_capture_possible:
+            capture_move(move, fields, player, direction_of_x)
+        else:
+            regular_move(move, fields, player, is_final_move)
+        # print('AFter move is_capture_possible', is_capture_possible)
+        # print_board_fields(fields)
     else:
-        regular_move(move, fields, player)
+        # print('move_single_piece for player', player.name, 'move')
+        # print_board_fields(fields)
+        direction_of_x = get_direction_of_x_for_move(move)
+        is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player, direction_of_x)
+        # print('move_single_piece - is_capture_possible', is_capture_possible)
+        if is_capture_possible:
+            capture_move(move, fields, player, direction_of_x)
+        else:
+            regular_move(move, fields, player, is_final_move)
+        # print('AFter move is_capture_possible', is_capture_possible)
+        # print_board_fields(fields)
 
 
 def capture_move(move, fields, player, direction_of_x):
@@ -46,15 +61,25 @@ def get_capture_location(x, y, player, direction_of_x):
     return x + direction_of_x, y
 
 
-def regular_move(move, fields, player):
-    # print('before regular_move')
-    # print_board_fields(fields)
-    x, y, piece = move.x, move.y, move.piece
-    fields[piece.y][piece.x].value = EMPTY_FIELD
-    fields[y][x].value = player.name
-    piece.move_piece(x, y)
-    # print('after regular_move')
-    # print_board_fields(fields)
+def regular_move(move, fields, player, is_final_move):
+    if is_final_move:
+        print('before regular_move')
+        print_board_fields(fields)
+        x, y, piece = move.x, move.y, move.piece
+        fields[piece.y][piece.x].value = EMPTY_FIELD
+        fields[y][x].value = player.name
+        piece.move_piece(x, y)
+        print('after regular_move')
+        print_board_fields(fields)
+    else:
+        # print('before regular_move')
+        # print_board_fields(fields)
+        x, y, piece = move.x, move.y, move.piece
+        fields[piece.y][piece.x].value = EMPTY_FIELD
+        fields[y][x].value = player.name
+        piece.move_piece(x, y)
+        # print('after regular_move')
+        # print_board_fields(fields)
 
 
 def get_all_correct_moves(player, fields):
