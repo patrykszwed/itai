@@ -42,14 +42,9 @@ def get_fields(players):
 
 class Board:
     def __init__(self):
-        self.set_players()
-        self.fields = get_fields(self.players)
-        self.current_depth = 0
-
-    def set_players(self):
         self.players.append(Player(PLAYER_NAMES['P1']))
         self.players.append(Player(PLAYER_NAMES['P2']))
+        self.fields = get_fields(self.players)
 
     fields = []
     players = []
-    current_depth = 0

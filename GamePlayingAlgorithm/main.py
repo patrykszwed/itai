@@ -14,6 +14,7 @@ def main():
     print('------------------------------')
 
     board = Board()
+    print('Initial board state:')
     print_board(board)
     run_game(board)
 

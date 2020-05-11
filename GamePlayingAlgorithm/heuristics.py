@@ -2,20 +2,14 @@ from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START, PIECE_P
 from helpers import get_player_name_to_capture
 
 
-def get_capture_points(board, player):
-    # print('board.fields', board.fields)
+def get_capture_points(board):
     capture_points = 0
-    points_coefficient = 1 if player.name == PLAYER_NAMES['P1'] else -1
-    # print('points_coefficient', points_coefficient)
     for row_fields in board.fields:
-        # print('row_fields', row_fields)
         fields_to_check = get_fields_to_check(board, row_fields)
-        # print_board(board)
-        # print('fields_to_check', fields_to_check)
-        # TODO is_capture possible????
-        if is_capture_possible(fields_to_check, player):
-            # print('is capture possible?', is_capture_possible(fields_to_check, player))
-            capture_points += (PIECE_POINTS['CAPTURE'] * points_coefficient)
+        if is_capture_possible(fields_to_check, board.players[0]):
+            capture_points += PIECE_POINTS['CAPTURE']
+        elif is_capture_possible(fields_to_check, board.players[1]):
+            capture_points -= PIECE_POINTS['CAPTURE']
     return capture_points
 
 
