@@ -8,7 +8,7 @@ class Field:
         self.y = y
         self.piece = None
 
-    def set_piece(self):
+    def init_piece(self):
         self.piece = Piece(self.value, self.x, self.y)
 
     def print(self):

@@ -1,5 +1,6 @@
 from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START, PIECE_POINTS
-from helpers import get_player_name_to_capture
+from helpers import get_player_name_to_capture, print_board
+from move_helpers import is_capture_possible_on_field
 
 
 def get_capture_points(board, player):
@@ -7,26 +8,29 @@ def get_capture_points(board, player):
     capture_points_coefficient = 1 if player.name == PLAYER_NAMES['P1'] else -1
     for row_fields in board.fields:
         fields_to_check = get_fields_to_check(board, row_fields)
-        if is_capture_possible(fields_to_check, player):
-            # print('Capture possible for P1')
-            # print_board(board)
+        if is_capture_possible(fields_to_check, player, board):
+            print('Capture possible for player', player.name)
+            print_board(board)
             capture_points += PIECE_POINTS['CAPTURE']
-        # elif is_capture_possible(fields_to_check, board.players[1]):
-        #     print('Capture possible for P2')
-        #     print_board(board)
-        #     capture_points -= PIECE_POINTS['CAPTURE']
     return capture_points * capture_points_coefficient
 
 
-def is_capture_possible(fields, player):
+def is_capture_possible(fields, player, board):
     player_name_to_capture = get_player_name_to_capture(player)
     # print('fields', fields)
     for row_fields in fields:
         # print('row_fields', row_fields)
         for fields_to_check_for_one_field in row_fields:
+            print('len(fields_to_check_for_one_field)', len(fields_to_check_for_one_field))
             for field in fields_to_check_for_one_field:
+
                 # print('field', field)
-                if field.value == player_name_to_capture:
+                if is_capture_possible_on_field(field.x, field.y, board.fields, player,
+                                                1) or is_capture_possible_on_field(field.x, field.y, board.fields,
+                                                                                   player, -1):
+                    print('CAPTURE POSSIBLE FOR player:', player.name)
+                    print_board(board)
+                    field.print()
                     return True
     return False
 

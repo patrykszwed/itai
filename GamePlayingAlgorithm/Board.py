@@ -14,7 +14,7 @@ def place_players_pieces(fields, players):
             for field in row_fields:
                 if field.value == EMPTY_FIELD:
                     field.value = player.name
-                    field.set_piece()
+                    field.init_piece()
                     player.add_piece(field.piece)
                     pieces_count += 1
                     if pieces_count == 20:

@@ -1,9 +1,9 @@
 from Move import Move
 from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START
-from helpers import get_player_name_to_capture, print_board_fields
+from helpers import get_player_name_to_capture
 
 
-def get_player_to_move(board, prev_player):
+def get_opponent_player(board, prev_player):
     return board.players[1] if prev_player.name == PLAYER_NAMES['P1'] else board.players[0]
 
 
@@ -11,16 +11,17 @@ def get_direction_of_x_for_move(move):
     return move.x - move.piece.x
 
 
-def move_single_piece(fields, player, move, is_final_move=False):
+def move_single_piece(board, player, move, is_final_move=False):
+    fields = board.fields
     if is_final_move:
-        print('move_single_piece for player', player.name, 'move')
+        # print('move_single_piece for player', player.name, 'move')
         direction_of_x = get_direction_of_x_for_move(move)
         is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player, direction_of_x)
-        print('move_single_piece - is_capture_possible', is_capture_possible)
+        # print('move_single_piece - is_capture_possible', is_capture_possible)
         if is_capture_possible:
-            capture_move(move, fields, player, direction_of_x, is_final_move)
+            capture_move(board, player, move, direction_of_x, is_final_move)
         else:
-            regular_move(move, fields, player, is_final_move)
+            regular_move(fields, player, move, is_final_move)
         # print('AFter move is_capture_possible', is_capture_possible)
         # print_board_fields(fields)
     else:
@@ -30,17 +31,21 @@ def move_single_piece(fields, player, move, is_final_move=False):
         is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player, direction_of_x)
         # print('move_single_piece - is_capture_possible', is_capture_possible)
         if is_capture_possible:
-            capture_move(move, fields, player, direction_of_x, is_final_move)
+            capture_move(board, player, move, direction_of_x, is_final_move)
         else:
-            regular_move(move, fields, player, is_final_move)
+            regular_move(fields, player, move, is_final_move)
         # print('AFter move is_capture_possible', is_capture_possible)
         # print_board_fields(fields)
 
 
-def capture_move(move, fields, player, direction_of_x, is_final_move=False):
-    if is_final_move:
-        print('Before FINAL capture_move for player ', player.name)
-        print_board_fields(fields)
+def capture_move(board, player, move, direction_of_x, is_final_move=False):
+    fields = board.fields
+    opponent_player = get_opponent_player(board, player)
+    # if is_final_move:
+    #     print('Before FINAL capture_move for player ', player.name)
+    #     print_board_fields(fields)
+    #     print('Opponent pieces:')
+    #     [p.print() for p in opponent_player.pieces]
     x, y, piece = move.x, move.y, move.piece
 
     # clear previous location
@@ -48,7 +53,12 @@ def capture_move(move, fields, player, direction_of_x, is_final_move=False):
 
     # TODO remove piece from player's pieces
     # remove opponent's piece
-    fields[y][x].value = EMPTY_FIELD
+    field_to_clear = fields[y][x]
+    # field_to_clear.print()
+    field_to_clear.value = EMPTY_FIELD
+    opponent_player.remove_piece(field_to_clear.x, field_to_clear.y)
+
+    # piece_to_clear = None
     capture_location = get_capture_location(x, y, player, direction_of_x)
     # print('capture_location', capture_location)
     x, y = capture_location
@@ -56,9 +66,11 @@ def capture_move(move, fields, player, direction_of_x, is_final_move=False):
     # set new piece's location
     fields[y][x].value = player.name
     piece.move_piece(x, y)
-    if is_final_move:
-        print('After FINAL capture_move')
-        print_board_fields(fields)
+    # if is_final_move:
+    #     print('After FINAL capture_move')
+    #     print_board_fields(fields)
+    #     print('Opponent pieces:')
+    #     [p.print() for p in opponent_player.pieces]
 
 
 def get_capture_location(x, y, player, direction_of_x):
@@ -67,11 +79,11 @@ def get_capture_location(x, y, player, direction_of_x):
     return x + direction_of_x, y
 
 
-def regular_move(move, fields, player, is_final_move):
+def regular_move(fields, player, move, is_final_move):
     if is_final_move:
         # print('before regular_move')
         # print_board_fields(fields)
-        move.print()
+        # move.print()
         x, y, piece = move.x, move.y, move.piece
         # piece.print()
         # TODO change the coordinates. Move has to hold coordinates to which we move the piece.

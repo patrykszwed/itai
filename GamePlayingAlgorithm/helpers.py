@@ -3,8 +3,8 @@ from constants import PLAYER_NAMES
 
 def print_board(board):
     fields = board.fields
-    # print('')
-    # print('Board state:')
+    print('')
+    print('Board state:')
     for i in range(len(fields)):
         for j in range(len(fields)):
             field = fields[i][j]
