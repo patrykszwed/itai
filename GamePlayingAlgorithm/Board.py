@@ -53,12 +53,14 @@ def get_copied_fields(fields):
 class Board:
     def __init__(self, fields=None, players=None):
         if fields is None or players is None:
+            self.pieces = []
             self.players.append(Player(PLAYER_NAMES['P1']))
             self.players.append(Player(PLAYER_NAMES['P2']))
             self.fields = get_fields(self.players)
         else:
             self.players = []
             self.fields = []
+            self.pieces = []
             self.players.append(Player(PLAYER_NAMES['P1'], fields))
             self.players.append(Player(PLAYER_NAMES['P2'], fields))
             self.fields = get_copied_fields(fields)
@@ -69,3 +71,4 @@ class Board:
 
     fields = []
     players = []
+    pieces = []

@@ -49,7 +49,6 @@ def move_piece_minimax(board, player):
     print('PLAYER MOVE', player.name)
     print_board(board)
     best_move.print()
-    best_move.piece.print()
     if best_move.score == +infinity or best_move.score == -infinity:
         return False
     print('Before performing best move for player', player.name)
@@ -82,7 +81,8 @@ def minimax(board, player, depth, best_moves):
 
         move.x = correct_move.x
         move.y = correct_move.y
-        move.piece = correct_move.piece
+        move.piece_x = correct_move.piece_x
+        move.piece_y = correct_move.piece_y
         print('AFTER MINIMAX FOR PLAYER', player.name)
         print_board(board)
         [p.print() for p in player.pieces]
@@ -103,11 +103,12 @@ def minimax(board, player, depth, best_moves):
                 print('INSTEAD OF:')
                 best_move.print()
                 print('-------------------------')
-                best_move = move  # max value
-                # best_move.x = correct_move.x
-                # best_move.y = correct_move.y
-                # best_move.piece = correct_move.piece
-                # best_move.score = move.score
+                # best_move = move  # max value
+                best_move.x = move.x
+                best_move.y = move.y
+                best_move.piece_x = move.piece_x
+                best_move.piece_y = move.piece_y
+                best_move.score = move.score
         else:
             # best_moves[1].append(move)
             if move.score < best_move.score:
@@ -118,11 +119,12 @@ def minimax(board, player, depth, best_moves):
                 print('INSTEAD OF:')
                 best_move.print()
                 print('-------------------------')
-                best_move = move  # min value
-                # best_move.x = correct_move.x
-                # best_move.y = correct_move.y
-                # best_move.piece = correct_move.piece
-                # best_move.score = move.score
+                # best_move = move  # min value
+                best_move.x = move.x
+                best_move.y = move.y
+                best_move.piece_x = move.piece_x
+                best_move.piece_y = move.piece_y
+                best_move.score = move.score
 
     return best_move
 
