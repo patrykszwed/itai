@@ -8,7 +8,6 @@ class Player:
 
     def remove_piece(self, x, y):
         self.pieces = [piece for piece in self.pieces if piece.x != x or piece.y != y]
-        # self.pieces.remove(piece)
 
     name = ''
     pieces = []

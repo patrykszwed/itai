@@ -8,8 +8,14 @@ class Field:
         self.y = y
         self.piece = None
 
-    def init_piece(self):
-        self.piece = Piece(self.value, self.x, self.y)
+    def init_piece(self, player):
+        self.piece = Piece(self.value, self.x, self.y, player)
+
+    def set_piece(self, piece):
+        self.piece = piece
+
+    def remove_piece(self):
+        self.piece = None
 
     def print(self):
         print('Field location: [', self.x, ',', self.y, '], value:', self.value)

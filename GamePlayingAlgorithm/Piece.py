@@ -2,11 +2,12 @@ from constants import PIECE_RANKS
 
 
 class Piece:
-    def __init__(self, value, x, y):
+    def __init__(self, value, x, y, player):
         self.value = value
         self.x = x
         self.y = y
         self.rank = PIECE_RANKS['PIECE']
+        self.player = player
 
     def move_piece(self, x, y):
         self.x = x
@@ -19,3 +20,4 @@ class Piece:
     x = 0
     y = 0
     rank = PIECE_RANKS['PIECE']
+    player = None

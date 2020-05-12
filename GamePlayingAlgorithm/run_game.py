@@ -4,7 +4,7 @@ from math import inf as infinity
 from Move import Move
 from constants import PLAYER_NAMES, MAX_SEARCH_DEPTH
 from helpers import print_board
-from heuristics import get_pieces_count_points, get_capture_points
+from heuristics import get_capture_points
 from move_helpers import move_single_piece, get_all_correct_moves
 
 
@@ -92,15 +92,21 @@ def minimax(board, player, depth):
             piece.x = x
             piece.y = y
             if move.score < min_move.score:
+                # print('Decided to take move.score', move.score, 'rather than min_move.score', min_move.score)
                 min_move = move
                 min_move.x = correct_move.x
                 min_move.y = correct_move.y
                 min_move.piece = correct_move.piece
+                # min_move.print()
+        print('Returning min_move')
+        print_board(board)
+        min_move.print()
         return min_move
 
 
 def evaluate(board, player):
-    pieces_count_points = get_pieces_count_points(board)
+    # pieces_count_points = get_pieces_count_points(board)
+    pieces_count_points = 0
     capture_points = get_capture_points(board, player)
     # print('pieces_count_points', pieces_count_points)
     # print('capture_points', capture_points)
