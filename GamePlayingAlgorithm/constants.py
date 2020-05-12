@@ -9,7 +9,7 @@ PIECE_MOVES = {
 }
 
 PIECE_POINTS = {
-    'CAPTURE': 5,
+    'CAPTURE': 10,
     'MOVE': 1
 }
 

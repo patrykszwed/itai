@@ -22,12 +22,17 @@ def run_game(board):
 
 def move_piece_minimax(board, player):
     best_move = minimax(copy.deepcopy(board), player, 0)
+    print('PLAYER MOVE', player.name)
+    print_board(board)
     best_move.print()
+    best_move.piece.print()
     if best_move.score == +infinity or best_move.score == -infinity:
         return False
     # print('Before performing best move for player', player.name)
     # print_board(board)
     # [p.print() for p in player.pieces]
+    # print('Before performing best move for player', player.name)
+    # print_board(board)
     move_single_piece(board, player, best_move, True)
     print('After performing best move for player', player.name)
     print_board(board)
@@ -56,6 +61,7 @@ def minimax(board, player, depth):
             # [p.print() for p in pieces_copy0]
             move_single_piece(board_copy, player, correct_move)
             move = minimax(board_copy, board_copy.players[1], depth + 1)
+            # print('After minimax for P1')
             # move_single_piece_back(board_copy.fields, player, correct_move)
             # board_copy.players[0].pieces = pieces_copy0
             # board_copy.players[1].pieces = pieces_copy1
@@ -64,10 +70,14 @@ def minimax(board, player, depth):
             piece.y = y
             # print('correct_move', correct_move)
             # correct_move.print()
-            # print('After minimax')
-            # print_board(board_copy)
-            if move.score > max_move.score:
-                max_move = move
+            print('After minimax for P1')
+            print('----- MOVE -------')  # TODO here is something wrong with moves!!!
+            move.print()
+            print('----- CORRECT MOVE -------')
+            correct_move.print()
+            print_board(board_copy)
+            if correct_move.score > max_move.score:
+                max_move = correct_move
                 max_move.x = correct_move.x
                 max_move.y = correct_move.y
                 max_move.piece = correct_move.piece
@@ -91,16 +101,16 @@ def minimax(board, player, depth):
             board_copy.fields = fields_copy
             piece.x = x
             piece.y = y
-            if move.score < min_move.score:
+            if correct_move.score < min_move.score:
                 # print('Decided to take move.score', move.score, 'rather than min_move.score', min_move.score)
-                min_move = move
+                min_move = correct_move
                 min_move.x = correct_move.x
                 min_move.y = correct_move.y
                 min_move.piece = correct_move.piece
                 # min_move.print()
-        print('Returning min_move')
-        print_board(board)
-        min_move.print()
+        # print('Returning min_move')
+        # print_board(board)
+        # min_move.print()
         return min_move
 
 

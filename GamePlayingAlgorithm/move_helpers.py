@@ -1,6 +1,6 @@
 from Move import Move
-from constants import PLAYER_NAMES, EMPTY_FIELD
-from helpers import get_player_name_to_capture, is_correct_coordinates, get_opponent_player, print_board
+from constants import PLAYER_NAMES, EMPTY_FIELD, PIECE_POINTS
+from helpers import get_player_name_to_capture, is_correct_coordinates, get_opponent_player
 
 
 def get_direction_of_x_for_move(move):
@@ -12,15 +12,20 @@ def move_single_piece(board, player, move, is_final_move=False):
     direction_of_x = get_direction_of_x_for_move(move)
     is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player, direction_of_x, move.piece)
     if is_capture_possible:
-        print('Capture is possible for player', player.name)
-        move.print()
-        print('Before capture move')
-        print_board(board)
+        # print('Capture is possible for player', player.name)
+        # move.print()
+        # print_board(board)
         capture_move(board, player, move, direction_of_x)
-        print('After capture move')
-        print_board(board)
+        # print('After capture move')
+        # print_board(board)
+        # TODO assign score to move!!!!
+        move.score = PIECE_POINTS['CAPTURE']
     else:
+        # print('Capture is not possible for player', player.name)
+        # move.print()
+        # print_board(board)
         regular_move(fields, player, move)
+        move.score = PIECE_POINTS['MOVE']
 
 
 def capture_move(board, player, move, direction_of_x):
