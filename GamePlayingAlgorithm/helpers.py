@@ -40,12 +40,12 @@ def print_board_fields(fields):
                     print(field.value + " ", end="")
 
 
-def get_player_name_to_capture(player):
-    return PLAYER_NAMES['P1'] if player.name == PLAYER_NAMES['P2'] else PLAYER_NAMES['P2']
+def get_player_name_to_capture(player_name):
+    return PLAYER_NAMES['P1'] if player_name == PLAYER_NAMES['P2'] else PLAYER_NAMES['P2']
 
 
-def get_opponent_player(board, prev_player):
-    return board.players[1] if prev_player.name == PLAYER_NAMES['P1'] else board.players[0]
+def get_opponent_player(board, player_name):
+    return board.players[1] if player_name == PLAYER_NAMES['P1'] else board.players[0]
 
 
 def is_correct_coordinates(x, y):

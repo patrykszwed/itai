@@ -6,7 +6,6 @@ class Field:
         self.value = value
         self.x = x
         self.y = y
-        self.piece = None
 
     def init_piece(self, player):
         self.piece = Piece(self.value, self.x, self.y, player)

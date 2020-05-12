@@ -5,7 +5,9 @@ from move_helpers import get_all_correct_moves
 
 def get_capture_points(board, player):
     capture_points = 0
-    if is_capture_possible(player, board):
+    is_capture = is_capture_possible(player, board)
+    print('is_capture_possible', is_capture)
+    if is_capture:
         # print('Capture possible for player', player.name)
         # print_board(board)
         capture_points += PIECE_POINTS['CAPTURE']
@@ -23,5 +25,5 @@ def get_pieces_count_points(board):
 
 def is_capture_possible(player, board):
     all_correct_moves = get_all_correct_moves(player, board.fields, True)
-    # print('all_correct_moves', all_correct_moves)
+    print('all_correct_moves', all_correct_moves)
     return len(all_correct_moves) > 0  # TODO return unique moves

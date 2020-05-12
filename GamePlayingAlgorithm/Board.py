@@ -40,11 +40,32 @@ def get_fields(players):
     return place_players_pieces(all_fields, players)
 
 
+def get_copied_fields(fields):
+    copied_fields = []
+    for row_fields in fields:
+        fields = []
+        for field in row_fields:
+            fields.append(Field(field.value, field.x, field.y))
+        copied_fields.append(fields)
+    return copied_fields
+
+
 class Board:
-    def __init__(self):
-        self.players.append(Player(PLAYER_NAMES['P1']))
-        self.players.append(Player(PLAYER_NAMES['P2']))
-        self.fields = get_fields(self.players)
+    def __init__(self, fields=None, players=None):
+        if fields is None or players is None:
+            self.players.append(Player(PLAYER_NAMES['P1']))
+            self.players.append(Player(PLAYER_NAMES['P2']))
+            self.fields = get_fields(self.players)
+        else:
+            self.players = []
+            self.fields = []
+            self.players.append(Player(PLAYER_NAMES['P1'], fields))
+            self.players.append(Player(PLAYER_NAMES['P2'], fields))
+            self.fields = get_copied_fields(fields)
+
+    def get_cloned_board(self):
+        board = Board(self.fields, self.players)
+        return board
 
     fields = []
     players = []

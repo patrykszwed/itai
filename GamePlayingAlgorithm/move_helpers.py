@@ -1,36 +1,42 @@
 from Move import Move
 from constants import PLAYER_NAMES, EMPTY_FIELD, PIECE_POINTS
-from helpers import get_player_name_to_capture, is_correct_coordinates, get_opponent_player
+from helpers import get_player_name_to_capture, is_correct_coordinates, get_opponent_player, print_board
 
 
 def get_direction_of_x_for_move(move):
     return move.x - move.piece.x
 
 
-def move_single_piece(board, player, move, is_final_move=False):
+def move_single_piece(board, player_name, move, is_final_move=False):
     fields = board.fields
     direction_of_x = get_direction_of_x_for_move(move)
-    is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player, direction_of_x, move.piece)
+    is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player_name, direction_of_x, move.piece)
+    print('Before move_single_piece')
+    # [p.print() for p in player.pieces]
+    print_board(board)
     if is_capture_possible:
+        move.score = PIECE_POINTS['CAPTURE']
         # print('Capture is possible for player', player.name)
         # move.print()
         # print_board(board)
-        capture_move(board, player, move, direction_of_x)
+        capture_move(board, player_name, move, direction_of_x)
         # print('After capture move')
         # print_board(board)
         # TODO assign score to move!!!!
-        move.score = PIECE_POINTS['CAPTURE']
     else:
+        move.score = PIECE_POINTS['MOVE']
         # print('Capture is not possible for player', player.name)
         # move.print()
         # print_board(board)
-        regular_move(fields, player, move)
-        move.score = PIECE_POINTS['MOVE']
+        regular_move(fields, player_name, move)
+    print('After move_single_piece')
+    # [p.print() for p in player.pieces]
+    print_board(board)
 
 
-def capture_move(board, player, move, direction_of_x):
+def capture_move(board, player_name, move, direction_of_x):
     fields = board.fields
-    opponent_player = get_opponent_player(board, player)
+    opponent_player = get_opponent_player(board, player_name)
     x, y, piece = move.x, move.y, move.piece
 
     # clear previous location
@@ -45,30 +51,36 @@ def capture_move(board, player, move, direction_of_x):
     opponent_player.remove_piece(field_to_clear.x, field_to_clear.y)
 
     # piece_to_clear = None
-    capture_location = get_capture_location(x, y, player, direction_of_x)
+    capture_location = get_capture_location(x, y, player_name, direction_of_x)
     # print('capture_location', capture_location)
     x, y = capture_location
 
     # set new piece's location
-    fields[y][x].value = player.name
+    fields[y][x].value = player_name
     piece.move_piece(x, y)
 
 
-def get_capture_location(x, y, player, direction_of_x):
-    move_direction = 1 if player.name == PLAYER_NAMES['P1'] else -1
+def get_capture_location(x, y, player_name, direction_of_x):
+    move_direction = 1 if player_name == PLAYER_NAMES['P1'] else -1
     y = y - 1 * move_direction
     return x + direction_of_x, y
 
 
-def regular_move(fields, player, move):
+def regular_move(fields, player_name, move):
+    # print('regular_move for player', player.name)
     x, y, piece = move.x, move.y, move.piece
+    # piece.print()
+    # move.print()
+    # print_board_fields(fields)
     fields[piece.y][piece.x].value = EMPTY_FIELD
-    fields[y][x].value = player.name
+    fields[y][x].value = player_name
     piece.move_piece(x, y)
 
 
 def get_all_correct_moves(player, fields, is_capture=False):
     all_correct_moves = []
+    # print('player.pieces', len(player.pieces))
+    # [p.print() for p in player.pieces]
     for piece in player.pieces:
         correct_moves_for_piece = get_correct_moves_for_piece(piece, fields, player, is_capture)
         all_correct_moves.append(correct_moves_for_piece)
@@ -98,9 +110,9 @@ def is_correct_move(x, y, fields, player, direction_of_x, piece, is_capture):
     return is_capture_possible_on_field(x, y, fields, player, direction_of_x, piece)
 
 
-def is_capture_possible_on_field(x, y, fields, player, direction_of_x, piece):
-    move_direction = 1 if player.name == PLAYER_NAMES['P1'] else -1
-    player_name_to_capture = get_player_name_to_capture(player)
+def is_capture_possible_on_field(x, y, fields, player_name, direction_of_x, piece):
+    move_direction = 1 if player_name == PLAYER_NAMES['P1'] else -1
+    player_name_to_capture = get_player_name_to_capture(player_name)
     y_new = y - 1 * move_direction
     x_new = x + direction_of_x  # TODO something wrong here
     piece_y = piece.y
