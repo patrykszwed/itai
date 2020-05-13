@@ -1,4 +1,4 @@
-from constants import PIECE_RANKS, KING_NAMES, PLAYER_NAMES
+from constants import PIECE_RANKS, KING_NAMES, PIECE_NAMES
 
 
 class Piece:
@@ -13,7 +13,7 @@ class Piece:
         self.y = y
 
     def upgrade_rank(self, fields):
-        king_value = KING_NAMES['K1'] if self.value == PLAYER_NAMES['P1'] else KING_NAMES['K2']
+        king_value = KING_NAMES['K1'] if self.value in PIECE_NAMES['P1'] else KING_NAMES['K2']
         self.rank = PIECE_RANKS['KING']
         fields[self.y][self.x].value = king_value
         self.value = king_value

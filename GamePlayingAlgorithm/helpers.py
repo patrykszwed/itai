@@ -1,4 +1,4 @@
-from constants import PLAYER_NAMES, BOARD_START, BOARD_END, PIECE_NAMES
+from constants import BOARD_START, BOARD_END, PIECE_NAMES
 
 
 def print_board(board):
@@ -40,8 +40,8 @@ def print_board_fields(fields):
                     print(field.value + " ", end="")
 
 
-def get_player_name_to_capture(player_name):
-    return PLAYER_NAMES['P1'] if player_name == PLAYER_NAMES['P2'] else PLAYER_NAMES['P2']
+def get_piece_names_to_capture(player_name):
+    return PIECE_NAMES['P2'] if is_player_one(player_name) else PIECE_NAMES['P1']
 
 
 def get_opponent_player(board, player_name):
@@ -61,7 +61,7 @@ def get_capture_points_coefficient(player_name):
 
 
 def get_pieces_for_player_name(board, player_name):
-    return [p for p in board.pieces if p.value == player_name]
+    return [p for p in board.pieces if p.value in PIECE_NAMES[player_name]]
 
 
 def get_piece_from_location(board, player_name, piece_x, piece_y):

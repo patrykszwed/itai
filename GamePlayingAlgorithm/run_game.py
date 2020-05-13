@@ -1,8 +1,8 @@
 from math import inf as infinity
 
 from Move import Move
-from constants import PLAYER_NAMES, MAX_SEARCH_DEPTH
-from helpers import print_board, get_opponent_player, is_better_score
+from constants import PLAYER_NAMES, MAX_SEARCH_DEPTH, KING_NAMES
+from helpers import print_board, get_opponent_player, is_better_score, is_player_one
 from heuristics import get_capture_points, get_pieces_count_points
 from move_helpers import move_single_piece, get_all_correct_moves
 
@@ -98,7 +98,7 @@ def minimax(board, player_name, depth):
 
 def evaluate(board, player_name):
     points = 0
-    if player_name == PLAYER_NAMES['P1']:
+    if is_player_one(player_name):
         points += get_capture_points(board, player_name)
     else:
         points += get_pieces_count_points(board)
@@ -107,6 +107,5 @@ def evaluate(board, player_name):
 
 def game_over(board):
     flatten_fields_values = [field.value for sublist in board.fields for field in sublist]
-    player1 = board.players[0]
-    player2 = board.players[1]
-    return player1 not in flatten_fields_values or player2 not in flatten_fields_values
+    return (PLAYER_NAMES['P1'] not in flatten_fields_values and KING_NAMES['P1'] not in flatten_fields_values) or (
+            PLAYER_NAMES['P2'] not in flatten_fields_values and KING_NAMES['P2'] not in flatten_fields_values)
