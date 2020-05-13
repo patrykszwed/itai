@@ -1,14 +1,17 @@
 from Move import Move
 from constants import PLAYER_NAMES, EMPTY_FIELD
 from helpers import get_player_name_to_capture, is_correct_coordinates, get_pieces_for_player_name, \
-    get_piece_from_location
+    get_piece_from_location, print_board
 
 
 def get_direction_of_x_for_move(move):
     return move.x - move.piece_x
 
 
-def move_single_piece(board, player_name, move, is_final_move=False):
+def move_single_piece(board, player_name, move, is_final_move=False, is_from_minimax=False):
+    if is_from_minimax:
+        print('move_single_piece FROM MINIMAX FOR PLAYER', player_name)
+        print_board(board)
     fields = board.fields
     direction_of_x = get_direction_of_x_for_move(move)
     is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player_name, direction_of_x)
@@ -16,16 +19,15 @@ def move_single_piece(board, player_name, move, is_final_move=False):
     # [p.print() for p in player.pieces]
     # print_board(board)
     if is_capture_possible:
-        # move.score = PIECE_POINTS['CAPTURE']
-        # print('Capture is possible for player', player_name)
-        # move.print()
-        # print_board(board)
-        # print('Before capture move')
-        # print_board(board)
+        print('Capture is possible for player', player_name)
+        move.print()
+        print_board(board)
+        print('Before capture move')
+        print_board(board)
         capture_move(board, player_name, move, direction_of_x)
-        # print('After capture move')
-        # print_board(board)
-        # print()
+        print('After capture move')
+        print_board(board)
+        print()
         # TODO assign score to move!!!!
     else:
         # move.score = PIECE_POINTS['MOVE']
@@ -33,9 +35,9 @@ def move_single_piece(board, player_name, move, is_final_move=False):
         # move.print()
         # print_board(board)
         regular_move(board, player_name, move)
-    # print('After move_single_piece')
-    # [p.print() for p in player.pieces]
-    # print_board(board)
+    if is_from_minimax:
+        print('move_single_piece AFTER MINIMAX FOR PLAYER', player_name)
+        print_board(board)
 
 
 def capture_move(board, player_name, move, direction_of_x):

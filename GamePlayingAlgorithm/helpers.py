@@ -67,3 +67,9 @@ def get_pieces_for_player_name(board, player_name):
 def get_piece_from_location(board, player_name, piece_x, piece_y):
     pieces_for_player_name = get_pieces_for_player_name(board, player_name)
     return next((piece for piece in pieces_for_player_name if piece.x == piece_x and piece.y == piece_y), None)
+
+
+def is_better_score(potential_move, best_move, player_name):
+    if player_name == PLAYER_NAMES['P1']:
+        return potential_move.score > best_move.score
+    return potential_move.score < best_move.score

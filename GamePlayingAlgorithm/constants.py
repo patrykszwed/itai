@@ -9,7 +9,7 @@ PIECE_MOVES = {
 }
 
 PIECE_POINTS = {
-    'CAPTURE': 10,
+    'CAPTURE': 30,
     'MOVE': 1
 }
 
@@ -23,4 +23,4 @@ EMPTY_FIELD = '_'
 BOARD_START = 0
 BOARD_END = 9
 
-MAX_SEARCH_DEPTH = 4
+MAX_SEARCH_DEPTH = 3
