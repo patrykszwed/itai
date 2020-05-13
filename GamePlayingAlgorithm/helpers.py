@@ -1,4 +1,4 @@
-from constants import BOARD_START, BOARD_END, PIECE_NAMES
+from constants import BOARD_START, BOARD_END, PIECE_NAMES, KING_NAMES
 
 
 def print_board(board):
@@ -77,3 +77,7 @@ def is_better_score(potential_move, best_move, player_name):
 
 def is_player_one(player_name):
     return player_name in PIECE_NAMES['P1']
+
+
+def is_piece_king(piece):
+    return piece.value == KING_NAMES['K1'] or piece.value == KING_NAMES['K2']

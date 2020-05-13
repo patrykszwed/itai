@@ -1,7 +1,7 @@
 from Move import Move
 from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START
 from helpers import get_piece_names_to_capture, is_correct_coordinates, get_pieces_for_player_name, \
-    get_piece_from_location, is_player_one, print_board
+    get_piece_from_location, is_player_one, print_board, is_piece_king, print_board_fields
 
 
 def move_single_piece(board, player_name, move, is_final_move=False, is_from_minimax=False):
@@ -92,11 +92,50 @@ def get_capture_location(x, y, direction_of_x, direction_of_y):
 def get_all_correct_moves(board, player_name, fields, is_capture=False):
     all_correct_moves = []
     for piece in get_pieces_for_player_name(board, player_name):
-        correct_moves_for_piece = get_correct_moves_for_piece(piece, fields, player_name, is_capture)
-        all_correct_moves.append(correct_moves_for_piece)
+        if is_piece_king(piece):
+            correct_moves = get_correct_moves_for_king(piece, fields, player_name, is_capture)
+        else:
+            correct_moves = get_correct_moves_for_piece(piece, fields, player_name, is_capture)
+        all_correct_moves.append(correct_moves)
     flatten_all_correct_moves = [all_correct_moves_for_one_piece for sublist in all_correct_moves for
                                  all_correct_moves_for_one_piece in sublist]
     return flatten_all_correct_moves
+
+
+def get_correct_moves_for_king(piece, fields, player_name, is_capture):
+    # print('get_correct_moves_for_king for player', player_name)
+    # piece.print()
+    correct_moves = get_correct_moves_for_king_for_one_direction(piece, fields, player_name, is_capture,
+                                                                 1) + get_correct_moves_for_king_for_one_direction(
+        piece, fields, player_name, is_capture, -1)
+    print('Correct moves for King for player', player_name)
+    [m.print() for m in correct_moves]
+    print('And board state')
+    print_board_fields(fields)
+    return correct_moves
+
+
+def get_correct_moves_for_king_for_one_direction(piece, fields, player_name, is_capture, direction_of_y):
+    correct_moves = []
+    piece_x = piece.x
+    piece_y = piece.y
+    is_correct_move1, is_correct_move2 = True, True
+    iterator = 0
+    while is_correct_move1 or is_correct_move2:
+        x = piece_x + 1 + iterator
+        y = piece_y - (1 * direction_of_y) - (iterator * direction_of_y)
+        if is_correct_move1 and is_correct_move_for_king(piece_x, piece_y, x, y, fields, player_name, 1, 1, is_capture):
+            correct_moves.append(Move(x, y, 0, piece.x, piece.y))
+        else:
+            is_correct_move1 = False
+        x = piece_x - 1 - iterator
+        if is_correct_move2 and is_correct_move_for_king(piece_x, piece_y, x, y, fields, player_name, -1, 1,
+                                                         is_capture):
+            correct_moves.append(Move(x, y, 0, piece.x, piece.y))
+        else:
+            is_correct_move2 = False
+        iterator += 1
+    return correct_moves
 
 
 def get_correct_moves_for_piece(piece, fields, player_name, is_capture):
@@ -128,6 +167,28 @@ def is_correct_move(x, y, fields, player_name, direction_of_x, direction_of_y, i
     if not is_capture and fields[y][x].value == EMPTY_FIELD:
         return True
     return is_capture_possible_on_field(x, y, fields, player_name, direction_of_x, direction_of_y)
+
+
+def is_correct_move_for_king(piece_x, piece_y, x, y, fields, player_name, direction_of_x, direction_of_y, is_capture):
+    if not is_correct_coordinates(x, y):
+        return False
+
+    if not is_capture and is_correct_empty_field_for_king(piece_x, piece_y, x, y, fields, direction_of_x,
+                                                          direction_of_y):
+        return True
+    return is_capture_possible_on_field(x, y, fields, player_name, direction_of_x, direction_of_y)
+
+
+def is_correct_empty_field_for_king(piece_x, piece_y, x, y, fields, direction_of_x, direction_of_y):
+    print('is_correct_empty_field_for_king x', x, 'y', y, 'piece_x', piece_x, 'piece_y', piece_y, )
+    print_board_fields(fields)
+    y_new = y + 1 * direction_of_y
+    x_new = x - direction_of_x
+    if not is_correct_coordinates(x_new, y_new):
+        return False
+    print('fields[y_new][x_new].value', fields[y_new][x_new].value)
+    return (x_new == piece_x and y_new == piece_y and fields[y][x].value == EMPTY_FIELD) or fields[y_new][
+        x_new].value == EMPTY_FIELD
 
 
 def is_capture_possible_on_field(x, y, fields, player_name, direction_of_x, direction_of_y):

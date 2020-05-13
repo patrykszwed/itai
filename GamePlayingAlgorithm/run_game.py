@@ -37,6 +37,7 @@ def move_piece_minimax(board, player_name, final_move=False):
     if final_move:
         print('After performing best move for player', player_name)
         print_board(board)
+        best_move.print()
         # [p.print() for p in get_pieces_for_player_name(board, player_name)]
 
     return True
