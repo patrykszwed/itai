@@ -108,5 +108,5 @@ def evaluate(board, player_name):
 
 def game_over(board):
     flatten_fields_values = [field.value for sublist in board.fields for field in sublist]
-    return (PLAYER_NAMES['P1'] not in flatten_fields_values and KING_NAMES['P1'] not in flatten_fields_values) or (
-            PLAYER_NAMES['P2'] not in flatten_fields_values and KING_NAMES['P2'] not in flatten_fields_values)
+    return (PLAYER_NAMES['P1'] not in flatten_fields_values and KING_NAMES['K1'] not in flatten_fields_values) or (
+            PLAYER_NAMES['P2'] not in flatten_fields_values and KING_NAMES['K2'] not in flatten_fields_values)
