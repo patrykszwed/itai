@@ -56,5 +56,14 @@ def is_correct_location(location):
     return BOARD_START <= location <= BOARD_END
 
 
-def get_capture_points_coefficient(player):
-    return 1 if player.name == PLAYER_NAMES['P1'] else -1
+def get_capture_points_coefficient(player_name):
+    return 1 if player_name == PLAYER_NAMES['P1'] else -1
+
+
+def get_pieces_for_player_name(board, player_name):
+    return [p for p in board.pieces if p.value == player_name]
+
+
+def get_piece_from_location(board, player_name, piece_x, piece_y):
+    pieces_for_player_name = get_pieces_for_player_name(board, player_name)
+    return next((piece for piece in pieces_for_player_name if piece.x == piece_x and piece.y == piece_y), None)
