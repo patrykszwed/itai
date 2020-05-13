@@ -1,4 +1,4 @@
-from constants import PLAYER_NAMES, BOARD_START, BOARD_END
+from constants import PLAYER_NAMES, BOARD_START, BOARD_END, PIECE_NAMES
 
 
 def print_board(board):
@@ -45,7 +45,7 @@ def get_player_name_to_capture(player_name):
 
 
 def get_opponent_player(board, player_name):
-    return board.players[1] if player_name == PLAYER_NAMES['P1'] else board.players[0]
+    return board.players[1] if is_player_one(player_name) else board.players[0]
 
 
 def is_correct_coordinates(x, y):
@@ -57,7 +57,7 @@ def is_correct_location(location):
 
 
 def get_capture_points_coefficient(player_name):
-    return 1 if player_name == PLAYER_NAMES['P1'] else -1
+    return 1 if is_player_one(player_name) else -1
 
 
 def get_pieces_for_player_name(board, player_name):
@@ -70,6 +70,10 @@ def get_piece_from_location(board, player_name, piece_x, piece_y):
 
 
 def is_better_score(potential_move, best_move, player_name):
-    if player_name == PLAYER_NAMES['P1']:
+    if is_player_one(player_name):
         return potential_move.score > best_move.score
     return potential_move.score < best_move.score
+
+
+def is_player_one(player_name):
+    return player_name in PIECE_NAMES['P1']

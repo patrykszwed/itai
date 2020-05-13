@@ -18,9 +18,19 @@ PLAYER_NAMES = {
     'P1': 'P1'
 }
 
+KING_NAMES = {
+    'K2': 'K2',
+    'K1': 'K1'
+}
+
+PIECE_NAMES = {
+    'P1': ['P1', 'K1'],
+    'P2': ['P2', 'K2']
+}
+
 EMPTY_FIELD = '_'
 
 BOARD_START = 0
 BOARD_END = 9
 
-MAX_SEARCH_DEPTH = 3
+MAX_SEARCH_DEPTH = 2

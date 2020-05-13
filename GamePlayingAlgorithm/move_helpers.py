@@ -1,5 +1,5 @@
 from Move import Move
-from constants import PLAYER_NAMES, EMPTY_FIELD
+from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START
 from helpers import get_player_name_to_capture, is_correct_coordinates, get_pieces_for_player_name, \
     get_piece_from_location
 
@@ -26,13 +26,14 @@ def move_single_piece(board, player_name, move, is_final_move=False, is_from_min
     # print('Before move_single_piece')
     # [p.print() for p in player.pieces]
     # print_board(board)
+    piece_after_move = None
     if is_capture_possible:
         # if is_final_move:
         #     print('Capture is possible for player', player_name)
         #     move.print()
         #     print('Before capture move for player', player_name)
         #     print_board(board)
-        capture_move(board, player_name, move, direction_of_x, direction_of_y, is_final_move)
+        piece_after_move = capture_move(board, player_name, move, direction_of_x, direction_of_y, is_final_move)
         # if is_final_move:
         #     print('After capture move for player', player_name)
         #     print_board(board)
@@ -43,10 +44,26 @@ def move_single_piece(board, player_name, move, is_final_move=False, is_from_min
         # print('Capture is not possible for player', player.name)
         # move.print()
         # print_board(board)
-        regular_move(board, player_name, move)
+        piece_after_move = regular_move(board, player_name, move)
+    # print('before is_piece_on_king_position for player_name', player_name)
+    # move.print()
+    if is_piece_on_king_position(player_name, piece_after_move):
+        # print('move.y', move.y)
+        # print('Player ', player_name, ' has a piece is on king position!')
+        # print_board(board)
+        piece_after_move.upgrade_rank(board.fields)
+        # print('After upgrading piece')
+        # print_board(board)
+        # print()
     # if is_from_minimax:
     #     print('move_single_piece AFTER MINIMAX FOR PLAYER', player_name)
     #     print_board(board)
+
+
+def is_piece_on_king_position(player_name, piece_after_move):
+    king_position = BOARD_START if player_name == PLAYER_NAMES['P1'] else BOARD_END
+    # print('is_piece_on_king_position ', player_name, 'y', piece_after_move.y, 'king_position', king_position)
+    return piece_after_move.y == king_position
 
 
 def capture_move(board, player_name, move, direction_of_x, direction_of_y, is_final_move=False):
@@ -95,6 +112,7 @@ def capture_move(board, player_name, move, direction_of_x, direction_of_y, is_fi
     # print('len(get_pieces_for_player_name(board, get_player_name_to_capture(player_name)))',
     #       len(get_pieces_for_player_name(board, get_player_name_to_capture(player_name))))
     # print()
+    return piece_from_location
 
 
 def get_capture_location(x, y, player_name, direction_of_x, direction_of_y, is_final_move):
@@ -114,6 +132,7 @@ def regular_move(board, player_name, move):
 
     piece_from_location = get_piece_from_location(board, player_name, piece_x, piece_y)
     piece_from_location.move_piece(x, y)
+    return piece_from_location
 
 
 def get_all_correct_moves(board, player_name, fields, is_capture=False):
