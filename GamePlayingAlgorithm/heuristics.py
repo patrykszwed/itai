@@ -8,8 +8,6 @@ def get_capture_points(board, player_name):
     capture_moves = get_capture_moves(player_name, board)
     for capture_move in capture_moves:
         board_copy = board.get_cloned_board()
-        # print('capture_move')
-        # capture_move.print()
         capture_count = move_single_piece(board_copy, player_name, capture_move)
         if capture_count > capture_count_max:
             capture_count_max = capture_count

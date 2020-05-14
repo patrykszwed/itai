@@ -15,9 +15,9 @@ def run_game(board):
     move = 0
     while is_move_possible_minimax and is_move_possible_alpha_beta:
         print('MOVE', move)
-        print_board(board)
+        print_board(board_copy)
         # is_move_possible_minimax = move_piece_minimax(board, players[move % 2])
-        is_move_possible_alpha_beta = move_piece_alpha_beta(board, players[move % 2])
+        is_move_possible_alpha_beta = move_piece_alpha_beta(board_copy, players[move % 2])
         move += 1
 
     print('\nFinal board state:')
@@ -29,7 +29,7 @@ def move_piece_minimax(board, player_name):
     best_move = minimax(board.get_cloned_board(), player_name, 0)
     print('move_piece_minimax best_move = ')
     best_move.print()
-    print("--- Time needed for Minimax\'s move = %s seconds ---" % (time.time() - start_time))
+    # print("--- Time needed for Minimax\'s move = %s seconds ---" % (time.time() - start_time))
 
     if best_move.score == +infinity or best_move.score == -infinity:
         return False
@@ -133,6 +133,10 @@ def evaluate(board, player_name):
         points = get_capture_points(board, player_name)
         if points > 30:
             print('CAPTURE POINTS FOR PLAYER1', points)
+            print_board(board)
+        if points < -30:
+            print('CAPTURE POINTS FOR PLAYER2', points)
+            print_board(board)
     else:
         points = get_pieces_count_points(board)
     return points
