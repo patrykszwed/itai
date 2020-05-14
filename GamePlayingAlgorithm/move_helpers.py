@@ -15,7 +15,6 @@ def move_single_piece(board, player_name, move):
             direction_of_x = get_direction_of_x_for_move(move)
             direction_of_y = get_direction_of_y_for_move(move)
             capture_count += 1
-
             piece_after_move = capture_move(board, player_name, move, direction_of_x, direction_of_y)
             capture_moves_for_piece = get_correct_capture_moves_for_piece(piece_after_move, fields, player_name)
             is_capture_possible = False
