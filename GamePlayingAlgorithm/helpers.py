@@ -75,6 +75,12 @@ def is_better_score(potential_move, best_move, player_name):
     return potential_move.score < best_move.score
 
 
+def is_better_score_alpha_beta(potential_move, player_name, alpha, beta):
+    if is_player_one(player_name):
+        return potential_move.score > alpha
+    return potential_move.score < beta
+
+
 def is_player_one(player_name):
     return player_name in PIECE_NAMES['P1']
 

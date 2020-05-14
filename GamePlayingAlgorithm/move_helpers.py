@@ -1,13 +1,10 @@
 from Move import Move
-from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START, PIECE_RANKS
+from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START
 from helpers import get_piece_names_to_capture, is_correct_coordinates, get_pieces_for_player_name, \
-    get_piece_from_location, is_player_one, is_piece_king, is_empty_field, print_board, print_board_fields
+    get_piece_from_location, is_player_one, is_piece_king, is_empty_field
 
 
 def move_single_piece(board, player_name, move, is_final_move=False, is_from_minimax=False):
-    # if is_from_minimax:
-    #     print('move_single_piece FROM MINIMAX FOR PLAYER', player_name)
-    #     print_board(board)
     fields = board.fields
     direction_of_x = get_direction_of_x_for_move(move)
     # print('IN move_single_piece')
@@ -15,7 +12,7 @@ def move_single_piece(board, player_name, move, is_final_move=False, is_from_min
     # print('BEFOREEE')
     piece_to_move = get_piece_from_location(board, player_name, move.piece_x, move.piece_y)
     if is_piece_king(piece_to_move):
-        print('In move_single_piece')
+        # print('In move_single_piece')
         is_capture_possible = is_capture_possible_on_field_for_king(move.piece_x, move.piece_y, move.x, move.y, fields,
                                                                     player_name, direction_of_x,
                                                                     direction_of_y)
@@ -26,28 +23,28 @@ def move_single_piece(board, player_name, move, is_final_move=False, is_from_min
     # [p.print() for p in player.pieces]
     # print_board(board)
     if is_capture_possible:
-        if is_final_move:
-            print('Capture is possible for player', player_name)
-            move.print()
-            print('Before capture move for player', player_name)
-            print_board(board)
+        # if is_final_move:
+        #     print('Capture is possible for player', player_name)
+        #     move.print()
+        #     print('Before capture move for player', player_name)
+        #     print_board(board)
         piece_after_move = capture_move(board, player_name, move, direction_of_x, direction_of_y, is_final_move)
-        if is_final_move:
-            print('After capture move for player', player_name)
-            print_board(board)
-            print()
+        # if is_final_move:
+        #     print('After capture move for player', player_name)
+        #     print_board(board)
+        #     print()
     else:
         # if is_final_move:
         #     print('----------------')
         #     print('Regular move')
         #     print('----------------')
         piece_after_move = regular_move(board, player_name, move)
-    if is_final_move and is_capture_possible and piece_after_move.rank == PIECE_RANKS['KING']:
-        print('This capture was by KING for player', player_name)
-        move.print()
-        print('After move:')
-        print_board(board)
-        print()
+    # if is_final_move and is_capture_possible and piece_after_move.rank == PIECE_RANKS['KING']:
+    #     print('This capture was by KING for player', player_name)
+    #     move.print()
+    #     print('After move:')
+    #     print_board(board)
+    #     print()
     # print('before is_piece_on_king_position for player_name', player_name)
     # move.print()
     if is_piece_on_king_position(player_name, piece_after_move):
@@ -120,15 +117,15 @@ def get_all_correct_moves(board, player_name, fields, is_capture=False):
 
 
 def get_correct_moves_for_king(piece, fields, player_name, is_capture):
-    print('get_correct_moves_for_king for player', player_name)
-    piece.print()
+    # print('get_correct_moves_for_king for player', player_name)
+    # piece.print()
     correct_moves = get_correct_moves_for_king_for_one_direction(piece, fields, player_name, is_capture,
                                                                  1) + get_correct_moves_for_king_for_one_direction(
         piece, fields, player_name, is_capture, -1)
-    print('Correct moves for King for player', player_name)
-    [m.print() for m in correct_moves]
-    print('And board state')
-    print_board_fields(fields)
+    # print('Correct moves for King for player', player_name)
+    # [m.print() for m in correct_moves]
+    # print('And board state')
+    # print_board_fields(fields)
     return correct_moves
 
 
@@ -211,7 +208,7 @@ def is_correct_move_for_king(piece_x, piece_y, x, y, fields, player_name, is_cap
 
 
 def is_capture_possible_on_field_for_king(piece_x, piece_y, x, y, fields, player_name, direction_of_x,
-                                          direction_of_y):  # <--- TODO sth wrong with capturing by king
+                                          direction_of_y):
     piece_names_to_capture = get_piece_names_to_capture(player_name)
     if direction_of_x is None:
         direction_of_x = get_direction_of_x(x, piece_x)
@@ -242,24 +239,6 @@ def is_capture_possible_on_field_for_king(piece_x, piece_y, x, y, fields, player
     # print_board_fields(fields)
     # print('fields[y][x].value', fields[y][x].value)
     return fields[y][x].value in piece_names_to_capture
-
-
-def is_correct_empty_field_for_king(piece_x, piece_y, x, y, fields, direction_of_x, direction_of_y):
-    print('is_correct_empty_field_for_king x', x, 'y', y, 'piece_x', piece_x, 'piece_y', piece_y, 'direction_of_x',
-          direction_of_x, 'direction_of_y', direction_of_y)
-    print_board_fields(fields)
-    y_new = y - 1 * direction_of_y
-    x_new = x + direction_of_x
-    if not is_correct_coordinates(x_new, y_new):
-        return False
-    print('x_new', x_new, 'y_new', y_new)
-    print('x', x, 'y', y)
-    print('is_empty_field(x, y, fields)', is_empty_field(x, y, fields))
-    print('fields[y_new][x_new].value', fields[y_new][x_new].value)
-    print('is_empty_field(x_new, y_new, fields)', is_empty_field(x_new, y_new, fields))
-
-    return (x_new == piece_x and y_new == piece_y and is_empty_field(x, y, fields)) or is_empty_field(x_new, y_new,
-                                                                                                      fields)
 
 
 def is_capture_possible_on_field(x, y, fields, player_name, direction_of_x, direction_of_y):
