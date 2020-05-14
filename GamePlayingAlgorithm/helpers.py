@@ -85,6 +85,10 @@ def is_player_one(player_name):
     return player_name in PIECE_NAMES['P1']
 
 
+def is_player_two(player_name):
+    return player_name in PIECE_NAMES['P2']
+
+
 def is_piece_king(piece):
     return piece.value == KING_NAMES['K1'] or piece.value == KING_NAMES['K2']
 

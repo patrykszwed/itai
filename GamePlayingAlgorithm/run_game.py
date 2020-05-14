@@ -1,3 +1,4 @@
+import time
 from math import inf as infinity
 
 from Move import Move
@@ -10,13 +11,13 @@ from move_helpers import move_single_piece, get_all_correct_moves
 def run_game(board):
     players = board.players
     board_copy = board.get_cloned_board()
-    is_move_possible = True
+    is_move_possible_minimax, is_move_possible_alpha_beta = True, True
     move = 0
-    while is_move_possible:
+    while is_move_possible_minimax and is_move_possible_alpha_beta:
         print('MOVE', move)
         print_board(board)
-        is_move_possible = move_piece_minimax(board, players[move % 2])
-        is_move_possible = move_piece_alpha_beta(board_copy, players[move % 2])
+        # is_move_possible_minimax = move_piece_minimax(board, players[move % 2])
+        is_move_possible_alpha_beta = move_piece_alpha_beta(board, players[move % 2])
         move += 1
 
     print('\nFinal board state:')
@@ -24,9 +25,11 @@ def run_game(board):
 
 
 def move_piece_minimax(board, player_name):
+    start_time = time.time()
     best_move = minimax(board.get_cloned_board(), player_name, 0)
     print('move_piece_minimax best_move = ')
     best_move.print()
+    print("--- Time needed for Minimax\'s move = %s seconds ---" % (time.time() - start_time))
 
     if best_move.score == +infinity or best_move.score == -infinity:
         return False
@@ -36,9 +39,11 @@ def move_piece_minimax(board, player_name):
 
 
 def move_piece_alpha_beta(board, player_name):
+    start_time = time.time()
     best_move = alpha_beta(board.get_cloned_board(), player_name, 0, -infinity, +infinity)
     print('move_piece_alpha_beta best_move = ')
     best_move.print()
+    print("--- Time needed for Alpha-Beta\'s move = %s seconds ---" % (time.time() - start_time))
 
     if best_move.score == +infinity or best_move.score == -infinity:
         return False
@@ -85,7 +90,10 @@ def minimax(board, player_name, depth):
 
 def alpha_beta(board, player_name, depth, alpha, beta):
     if depth == MAX_SEARCH_DEPTH or game_over(board):
+        print('EVALUATING FOR PLAYER', player_name, '......')
         score = evaluate(board, player_name)
+        print('Evaluate for player', player_name, 'score =', score)
+        print_board(board)
         return Move(-1, -1, score)
 
     best_move = Move(-1, -1, -infinity if player_name == PLAYER_NAMES['P1'] else +infinity)
@@ -121,11 +129,10 @@ def alpha_beta(board, player_name, depth, alpha, beta):
 
 
 def evaluate(board, player_name):
-    points = 0
     if is_player_one(player_name):
-        points += get_capture_points(board, player_name)
+        points = get_capture_points(board, player_name)
     else:
-        points += get_pieces_count_points(board)
+        points = get_pieces_count_points(board)
     return points
 
 
