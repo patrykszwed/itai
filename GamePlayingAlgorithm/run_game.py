@@ -29,16 +29,16 @@ def move_piece_minimax(board, player_name, final_move=False):
     # best_move.print()
     if best_move.score == +infinity or best_move.score == -infinity:
         return False
-    if final_move:
-        print('Before performing best move for player', player_name)
-        print_board(board)
-        # [p.print() for p in get_pieces_for_player_name(board, player_name)]
+    # if final_move:
+    #     print('Before performing best move for player', player_name)
+    #     print_board(board)
+    #     # [p.print() for p in get_pieces_for_player_name(board, player_name)]
     move_single_piece(board, player_name, best_move, True)
-    if final_move:
-        print('After performing best move for player', player_name)
-        print_board(board)
-        best_move.print()
-        # [p.print() for p in get_pieces_for_player_name(board, player_name)]
+    # if final_move:
+    #     print('After performing best move for player', player_name)
+    #     print_board(board)
+    #     best_move.print()
+    # [p.print() for p in get_pieces_for_player_name(board, player_name)]
 
     return True
 
