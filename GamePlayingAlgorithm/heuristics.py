@@ -11,7 +11,6 @@ def get_capture_points(board, player_name):
         capture_count = move_single_piece(board_copy, player_name, capture_move)
         if capture_count > capture_count_max:
             capture_count_max = capture_count
-    # print('return capture_points', capture_points * get_capture_points_coefficient(player_name))
     return PIECE_POINTS['CAPTURE'] * get_capture_points_coefficient(player_name) * capture_count_max
 
 
