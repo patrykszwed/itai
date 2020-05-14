@@ -1,15 +1,20 @@
 from constants import PIECE_POINTS
 from helpers import get_capture_points_coefficient, is_player_one, is_player_two
-from move_helpers import get_all_correct_moves
+from move_helpers import get_all_correct_moves, move_single_piece
 
 
 def get_capture_points(board, player_name):
-    capture_points = 0
-    is_capture = is_capture_possible(player_name, board)
-    if is_capture:
-        capture_points += PIECE_POINTS['CAPTURE']
-    print('return capture_points', capture_points * get_capture_points_coefficient(player_name))
-    return capture_points * get_capture_points_coefficient(player_name)
+    capture_count_max = 0
+    capture_moves = get_capture_moves(player_name, board)
+    for capture_move in capture_moves:
+        board_copy = board.get_cloned_board()
+        # print('capture_move')
+        # capture_move.print()
+        capture_count = move_single_piece(board_copy, player_name, capture_move)
+        if capture_count > capture_count_max:
+            capture_count_max = capture_count
+    # print('return capture_points', capture_points * get_capture_points_coefficient(player_name))
+    return PIECE_POINTS['CAPTURE'] * get_capture_points_coefficient(player_name) * capture_count_max
 
 
 def get_pieces_count_points(board):
@@ -19,6 +24,5 @@ def get_pieces_count_points(board):
     return player1_pieces - player2_pieces
 
 
-def is_capture_possible(player_name, board):
-    all_correct_moves = get_all_correct_moves(board, player_name, board.fields, True)
-    return len(all_correct_moves) > 0
+def get_capture_moves(player_name, board):
+    return get_all_correct_moves(board, player_name, board.fields, True)

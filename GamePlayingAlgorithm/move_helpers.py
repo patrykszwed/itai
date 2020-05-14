@@ -1,63 +1,43 @@
 from Move import Move
 from constants import PLAYER_NAMES, EMPTY_FIELD, BOARD_END, BOARD_START
 from helpers import get_piece_names_to_capture, is_correct_coordinates, get_pieces_for_player_name, \
-    get_piece_from_location, is_player_one, is_piece_king, is_empty_field
+    get_piece_from_location, is_player_one, is_piece_king, is_empty_field, print_board
 
 
 def move_single_piece(board, player_name, move, is_final_move=False, is_from_minimax=False):
     fields = board.fields
-    direction_of_x = get_direction_of_x_for_move(move)
-    # print('IN move_single_piece')
-    direction_of_y = get_direction_of_y_for_move(move)
-    # print('BEFOREEE')
+
     piece_to_move = get_piece_from_location(board, player_name, move.piece_x, move.piece_y)
-    if is_piece_king(piece_to_move):
-        # print('In move_single_piece')
-        is_capture_possible = is_capture_possible_on_field_for_king(move.piece_x, move.piece_y, move.x, move.y, fields,
-                                                                    player_name, direction_of_x,
-                                                                    direction_of_y)
-    else:
-        is_capture_possible = is_capture_possible_on_field(move.x, move.y, fields, player_name, direction_of_x,
-                                                           direction_of_y)
-    # print('Before move_single_piece')
-    # [p.print() for p in player.pieces]
-    # print_board(board)
+    is_capture_possible = is_capture_possible_for_piece(move, fields, player_name, piece_to_move)
+    capture_count = 0
     if is_capture_possible:
-        # if is_final_move:
-        #     print('Capture is possible for player', player_name)
-        #     move.print()
-        #     print('Before capture move for player', player_name)
-        #     print_board(board)
-        piece_after_move = capture_move(board, player_name, move, direction_of_x, direction_of_y, is_final_move)
-        # if is_final_move:
-        #     print('After capture move for player', player_name)
-        #     print_board(board)
-        #     print()
+        direction_of_x = get_direction_of_x_for_move(move)
+        direction_of_y = get_direction_of_y_for_move(move)
+        # print('Before capture_move')
+        # print_board(board)
+        while is_capture_possible:
+            if capture_count > 0:
+                print('After multiple capture')
+                print_board(board)
+            piece_after_move = capture_move(board, player_name, move, direction_of_x, direction_of_y, is_final_move)
+            is_capture_possible = is_capture_possible_for_piece(move, fields, player_name, piece_after_move)
+            capture_count += 1
     else:
-        # if is_final_move:
-        #     print('----------------')
-        #     print('Regular move')
-        #     print('----------------')
         piece_after_move = regular_move(board, player_name, move)
-    # if is_final_move and is_capture_possible and piece_after_move.rank == PIECE_RANKS['KING']:
-    #     print('This capture was by KING for player', player_name)
-    #     move.print()
-    #     print('After move:')
-    #     print_board(board)
-    #     print()
-    # print('before is_piece_on_king_position for player_name', player_name)
-    # move.print()
     if is_piece_on_king_position(player_name, piece_after_move):
-        # print('move.y', move.y)
-        # print('Player ', player_name, ' has a piece is on king position!')
-        # print_board(board)
         piece_after_move.upgrade_rank(board.fields)
-        # print('After upgrading piece')
-        # print_board(board)
-        # print()
-    # if is_from_minimax:
-    #     print('move_single_piece AFTER MINIMAX FOR PLAYER', player_name)
-    #     print_board(board)
+    return capture_count
+
+
+def is_capture_possible_for_piece(move, fields, player_name, piece_to_move):
+    direction_of_x = get_direction_of_x_for_move(move)
+    direction_of_y = get_direction_of_y_for_move(move)
+    if is_piece_king(piece_to_move):
+        return is_capture_possible_on_field_for_king(move.piece_x, move.piece_y, move.x, move.y, fields,
+                                                     player_name, direction_of_x,
+                                                     direction_of_y)
+    return is_capture_possible_on_field(move.x, move.y, fields, player_name, direction_of_x,
+                                        direction_of_y)
 
 
 def is_piece_on_king_position(player_name, piece_after_move):

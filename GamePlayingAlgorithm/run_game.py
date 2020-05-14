@@ -43,7 +43,7 @@ def move_piece_alpha_beta(board, player_name):
     best_move = alpha_beta(board.get_cloned_board(), player_name, 0, -infinity, +infinity)
     print('move_piece_alpha_beta best_move = ')
     best_move.print()
-    print("--- Time needed for Alpha-Beta\'s move = %s seconds ---" % (time.time() - start_time))
+    # print("--- Time needed for Alpha-Beta\'s move = %s seconds ---" % (time.time() - start_time))
 
     if best_move.score == +infinity or best_move.score == -infinity:
         return False
@@ -90,10 +90,10 @@ def minimax(board, player_name, depth):
 
 def alpha_beta(board, player_name, depth, alpha, beta):
     if depth == MAX_SEARCH_DEPTH or game_over(board):
-        print('EVALUATING FOR PLAYER', player_name, '......')
+        # print('EVALUATING FOR PLAYER', player_name, '......')
         score = evaluate(board, player_name)
-        print('Evaluate for player', player_name, 'score =', score)
-        print_board(board)
+        # print('Evaluate for player', player_name, 'score =', score)
+        # print_board(board)
         return Move(-1, -1, score)
 
     best_move = Move(-1, -1, -infinity if player_name == PLAYER_NAMES['P1'] else +infinity)
@@ -131,6 +131,8 @@ def alpha_beta(board, player_name, depth, alpha, beta):
 def evaluate(board, player_name):
     if is_player_one(player_name):
         points = get_capture_points(board, player_name)
+        if points > 30:
+            print('CAPTURE POINTS FOR PLAYER1', points)
     else:
         points = get_pieces_count_points(board)
     return points
