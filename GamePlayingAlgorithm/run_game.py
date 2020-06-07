@@ -4,7 +4,7 @@ from math import inf as infinity
 from Move import Move
 from constants import PLAYER_NAMES, MAX_SEARCH_DEPTH, KING_NAMES, MAX_SECONDS_PER_MOVE
 from helpers import print_board, get_opponent_player, is_better_score, is_player_one, is_better_score_alpha_beta
-from heuristics import get_capture_points, get_pieces_count_points
+from heuristics import get_pieces_count_points
 from move_helpers import move_single_piece, get_all_correct_moves
 
 
@@ -14,7 +14,7 @@ def run_game(board):
     move = 0
     while is_move_possible_minimax and is_move_possible_alpha_beta:
         print('MOVE', move)
-        is_move_possible_minimax = move_piece_minimax(board, players[0])
+        is_move_possible_minimax = move_piece_alpha_beta(board, players[0])
         print('\nAfter minimax move board:')
         print_board(board)
         if not is_move_possible_minimax:
@@ -125,10 +125,10 @@ def alpha_beta(board, player_name, depth, alpha, beta, start_time):
 
 
 def evaluate(board, player_name):
-    if is_player_one(player_name):
-        points = get_capture_points(board, player_name)
-    else:
-        points = get_pieces_count_points(board)
+    # if is_player_one(player_name):
+    #     points = get_capture_points(board, player_name)
+    # else:
+    points = get_pieces_count_points(board)
     return points
 
 
