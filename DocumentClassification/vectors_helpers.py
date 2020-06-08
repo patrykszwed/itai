@@ -1,7 +1,7 @@
 from pprint import pprint
 
-from helpers import transform_dictionary_to_vector, is_correct_letter
-from constants import K
+from helpers import transform_dictionary_to_vector, is_correct_letter, quote, is_correct_word
+from constants import K, QUOTE_SIGN
 
 
 def get_doc_words(docs_bodies):
@@ -14,7 +14,11 @@ def get_doc_words(docs_bodies):
             letter = word[i]
             if is_correct_letter(letter):
                 new_word += letter
-        if len(new_word) > 0:
+        if is_correct_word(new_word):
+            if new_word.find(QUOTE_SIGN) != -1:
+                print('Word before quote =', new_word)
+                new_word = quote(new_word)
+                print('Word after quote =', new_word)
             words.append(new_word)
     return words
 
@@ -68,48 +72,28 @@ def get_docs_vectors(newsgroups_train):
     return ready_vectors
 
 
-def get_sorted_dicts_by_words_count(most_frequent_words_for_each_category_dict):
-    k_most_frequent_words_for_each_category_dict = {}
-    for category in most_frequent_words_for_each_category_dict:
-        most_frequent_words_dict = most_frequent_words_for_each_category_dict[category]
-        sorted_words_by_count = {k: v for k, v in sorted(most_frequent_words_dict.items(), key=lambda item: item[1])}
-        k_most_frequent_words_for_each_category_dict[category] = sorted_words_by_count
-    return k_most_frequent_words_for_each_category_dict
+def get_sorted_dicts_by_words_count(most_frequent_words):
+    return {k: v for k, v in sorted(most_frequent_words.items(), key=lambda item: item[1])}
 
 
 def get_k_most_frequent_words_vector(vector):
-    # print('len(vector) = ', len(vector))
     return vector[-K * 2:]  # multiplied by 2 as we take word-count pairs
 
 
-def get_most_frequent_words_for_each_category(vectors):
-    most_frequent_words_for_each_category = []
-    most_frequent_words_for_each_category_dict = {}
+def get_k_most_frequent_words(vectors):
+    most_frequent_words = {}
     for vector in vectors:
-        category = vector[1]
-        most_frequent_words_for_one_category = {}
-        if category in most_frequent_words_for_each_category_dict:
-            most_frequent_words_for_one_category = most_frequent_words_for_each_category_dict[category]
-        else:
-            most_frequent_words_for_each_category_dict[category] = most_frequent_words_for_one_category
         words_dict = vector[2]
         for word in words_dict:
             count = words_dict[word]
-            if word in most_frequent_words_for_one_category:
-                most_frequent_words_for_one_category[word] += count
+            if word in most_frequent_words:
+                most_frequent_words[word] += count
             else:
-                most_frequent_words_for_one_category[word] = count
-    sorted_dicts_by_words_count = get_sorted_dicts_by_words_count(
-        most_frequent_words_for_each_category_dict)
-    for category in sorted_dicts_by_words_count:
-        # print('category', category)
-        vector = transform_dictionary_to_vector(sorted_dicts_by_words_count[category])
-        # print('len(vector)', len(vector))
-        k_most_frequent_words_vector = get_k_most_frequent_words_vector(vector)
-        # print('len(k_most_frequent_words_vector)', len(k_most_frequent_words_vector))
-        k_most_frequent_words_vector.insert(0, category)
-        most_frequent_words_for_each_category.append(k_most_frequent_words_vector)
-    return most_frequent_words_for_each_category, sorted_dicts_by_words_count
+                most_frequent_words[word] = count
+    sorted_dicts_by_words_count = get_sorted_dicts_by_words_count(most_frequent_words)
+    vector = transform_dictionary_to_vector(sorted_dicts_by_words_count)
+    k_most_frequent_words_vector = get_k_most_frequent_words_vector(vector)
+    return k_most_frequent_words_vector, sorted_dicts_by_words_count
 
 
 def get_most_frequent_words_for_document_category(most_frequent_words_for_each_category, category):
@@ -119,30 +103,51 @@ def get_most_frequent_words_for_document_category(most_frequent_words_for_each_c
     return None
 
 
-def get_vectors_for_each_document(word_vectors, most_frequent_words_for_each_category):
+# def get_vectors_for_each_document(word_vectors, most_frequent_words):
+#     vectors_for_each_document = []
+#     i = 0
+#     for word_vector in word_vectors:
+#         # print('word_vector', word_vector)
+#         category = word_vector[1]
+#         vector_for_one_document = [i, category]
+#         docs_words_frequencies = word_vector[2]
+#         word_idx = 0
+#         while word_idx < len(most_frequent_words):
+#             most_frequent_word = most_frequent_words[word_idx]
+#             count = 0
+#             if most_frequent_word in docs_words_frequencies:
+#                 # count = docs_words_frequencies[docs_words_frequencies.index(most_frequent_word) + 1]
+#                 count = docs_words_frequencies[most_frequent_word]
+#                 vector_for_one_document.append(most_frequent_word)
+#                 vector_for_one_document.append(count)
+#             word_idx += 2
+#         # vector_for_one_document = transform_dictionary_to_vector(vector_for_one_document)
+#         # print('len(vector_for_one_document)', len(vector_for_one_document))
+#         # print('vector_for_one_document', vector_for_one_document)
+#         vectors_for_each_document.append(vector_for_one_document)
+#         i += 1
+#     return vectors_for_each_document
+
+
+def get_vectors_for_each_document(word_vectors, most_frequent_words):
     vectors_for_each_document = []
     i = 0
     for word_vector in word_vectors:
+        # print('word_vector', word_vector)
         category = word_vector[1]
-        vector_for_one_document = [i, category]
+        vector_for_one_document = '' + str(i) + ',' + category + ','
         docs_words_frequencies = word_vector[2]
-        # print('docs_words_frequencies', docs_words_frequencies)
-        most_frequent_words_for_document_category = get_most_frequent_words_for_document_category(
-            most_frequent_words_for_each_category, category)
-        # print('len(most_frequent_words_for_document_category)', len(most_frequent_words_for_document_category))
         word_idx = 0
-        while word_idx < len(most_frequent_words_for_document_category):
-            most_frequent_word_for_category = most_frequent_words_for_document_category[word_idx]
+        while word_idx < len(most_frequent_words):
+            most_frequent_word = most_frequent_words[word_idx]
             count = 0
-            if most_frequent_word_for_category in docs_words_frequencies:
-                # count = docs_words_frequencies[docs_words_frequencies.index(most_frequent_word_for_category) + 1]
-                count = docs_words_frequencies[most_frequent_word_for_category]
-                vector_for_one_document.append(most_frequent_word_for_category)
-                vector_for_one_document.append(count)
+            if most_frequent_word in docs_words_frequencies:
+                count = docs_words_frequencies[most_frequent_word]
+            vector_for_one_document += most_frequent_word + ','
+            vector_for_one_document += str(count) + ','
             word_idx += 2
-        # vector_for_one_document = transform_dictionary_to_vector(vector_for_one_document)
-        # print('len(vector_for_one_document)', len(vector_for_one_document))
-        # print('vector_for_one_document', vector_for_one_document)
+        if vector_for_one_document[len(vector_for_one_document) - 1] == ',':
+            vector_for_one_document = vector_for_one_document[:len(vector_for_one_document) - 1]
         vectors_for_each_document.append(vector_for_one_document)
         i += 1
     return vectors_for_each_document
