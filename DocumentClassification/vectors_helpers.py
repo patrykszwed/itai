@@ -78,6 +78,7 @@ def get_sorted_dicts_by_words_count(most_frequent_words_for_each_category_dict):
 
 
 def get_k_most_frequent_words_vector(vector):
+    # print('len(vector) = ', len(vector))
     return vector[-K * 2:]  # multiplied by 2 as we take word-count pairs
 
 
@@ -101,11 +102,47 @@ def get_most_frequent_words_for_each_category(vectors):
     sorted_dicts_by_words_count = get_sorted_dicts_by_words_count(
         most_frequent_words_for_each_category_dict)
     for category in sorted_dicts_by_words_count:
-        print('category', category)
+        # print('category', category)
         vector = transform_dictionary_to_vector(sorted_dicts_by_words_count[category])
-        print('len(vector)', len(vector))
+        # print('len(vector)', len(vector))
         k_most_frequent_words_vector = get_k_most_frequent_words_vector(vector)
-        print('len(k_most_frequent_words_vector)', len(k_most_frequent_words_vector))
+        # print('len(k_most_frequent_words_vector)', len(k_most_frequent_words_vector))
         k_most_frequent_words_vector.insert(0, category)
         most_frequent_words_for_each_category.append(k_most_frequent_words_vector)
-    return most_frequent_words_for_each_category
+    return most_frequent_words_for_each_category, sorted_dicts_by_words_count
+
+
+def get_most_frequent_words_for_document_category(most_frequent_words_for_each_category, category):
+    for most_frequent_words_for_category in most_frequent_words_for_each_category:
+        if most_frequent_words_for_category[0] == category:
+            return get_k_most_frequent_words_vector(most_frequent_words_for_category)
+    return None
+
+
+def get_vectors_for_each_document(word_vectors, most_frequent_words_for_each_category):
+    vectors_for_each_document = []
+    i = 0
+    for word_vector in word_vectors:
+        category = word_vector[1]
+        vector_for_one_document = [i, category]
+        docs_words_frequencies = word_vector[2]
+        # print('docs_words_frequencies', docs_words_frequencies)
+        most_frequent_words_for_document_category = get_most_frequent_words_for_document_category(
+            most_frequent_words_for_each_category, category)
+        # print('len(most_frequent_words_for_document_category)', len(most_frequent_words_for_document_category))
+        word_idx = 0
+        while word_idx < len(most_frequent_words_for_document_category):
+            most_frequent_word_for_category = most_frequent_words_for_document_category[word_idx]
+            count = 0
+            if most_frequent_word_for_category in docs_words_frequencies:
+                # count = docs_words_frequencies[docs_words_frequencies.index(most_frequent_word_for_category) + 1]
+                count = docs_words_frequencies[most_frequent_word_for_category]
+                vector_for_one_document.append(most_frequent_word_for_category)
+                vector_for_one_document.append(count)
+            word_idx += 2
+        # vector_for_one_document = transform_dictionary_to_vector(vector_for_one_document)
+        # print('len(vector_for_one_document)', len(vector_for_one_document))
+        # print('vector_for_one_document', vector_for_one_document)
+        vectors_for_each_document.append(vector_for_one_document)
+        i += 1
+    return vectors_for_each_document
