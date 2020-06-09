@@ -1,20 +1,6 @@
 import numpy as np
 
-from constants import K, QUOTE_SIGN
-
-
-def quote(word):
-    print('word = ', word)
-    if word.startswith(QUOTE_SIGN) and word.endswith(QUOTE_SIGN):
-        return word[1:len(word) - 1]
-    if word.startswith(QUOTE_SIGN):
-        return word[1:]
-    if word.endswith(QUOTE_SIGN):
-        return word[:len(word) - 1]
-    quote_sign_index = word.index(QUOTE_SIGN)
-    first_part_of_word = word[:quote_sign_index]
-    second_part_of_word = word[quote_sign_index + 1:]
-    return QUOTE_SIGN + first_part_of_word + '\\' + QUOTE_SIGN + second_part_of_word + QUOTE_SIGN
+from constants import K, QUOTE_SIGN, cats
 
 
 def transform_dictionary_to_vector(dictionary):
@@ -26,11 +12,11 @@ def transform_dictionary_to_vector(dictionary):
 
 
 def is_correct_letter(letter):
-    return letter.isalpha()  # or letter == QUOTE_SIGN or letter == '-'
+    return letter.isalnum()
 
 
 def is_correct_word(word):
-    return len(word) > 0 and word.count(QUOTE_SIGN) <= 1
+    return len(word) > 0 and word.isalnum() and word.count(QUOTE_SIGN) <= 1
 
 
 def save_data_to_arff(data, output_file):
@@ -38,27 +24,24 @@ def save_data_to_arff(data, output_file):
 
 
 def append_arff_relation_header(vectors_for_each_document):
-    vectors_for_each_document.insert(0, '@relation documentCategory')
+    vectors_for_each_document.insert(0, '@RELATION docCategory')
     return vectors_for_each_document
 
 
 def append_arff_attributes_headers(vectors_for_each_document, k_most_frequent_words_vector):
-    idx = K - 1
     k_most_frequent_words = k_most_frequent_words_vector[::2]
-    while idx >= 0:
-        # print('k_most_frequent_words[idx]', k_most_frequent_words[idx])
-        vectors_for_each_document.insert(0, '@attribute frequency_of_' + k_most_frequent_words[idx] + ' numeric')
-        # vectors_for_each_document.insert(0, '@attribute word_' + str(idx) + ' string')
-        idx -= 1
     vectors_for_each_document.insert(0,
-                                     '@attribute class {alt.atheism,comp.graphics,rec.autos,sci.med,talk.politics.guns}')
-    vectors_for_each_document.insert(0,
-                                     '@attribute doc_id string')
+                                     '@ATTRIBUTE category_class {' + ','.join(cats) + '}')
+    idx = 0
+    while idx < K:
+        vectors_for_each_document.insert(0, '@ATTRIBUTE ' + k_most_frequent_words[idx] + ' NUMERIC')
+        idx += 1
+
     return vectors_for_each_document
 
 
 def append_arff_data_header(vectors_for_each_document):
-    vectors_for_each_document.insert(0, '@data')
+    vectors_for_each_document.insert(0, '@DATA')
     return vectors_for_each_document
 
 
