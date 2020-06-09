@@ -42,16 +42,18 @@ def append_arff_relation_header(vectors_for_each_document):
     return vectors_for_each_document
 
 
-def append_arff_attributes_headers(vectors_for_each_document):
+def append_arff_attributes_headers(vectors_for_each_document, k_most_frequent_words_vector):
     idx = K - 1
+    k_most_frequent_words = k_most_frequent_words_vector[::2]
     while idx >= 0:
-        vectors_for_each_document.insert(0, '@attribute frequency_of_w' + str(idx) + ' integer')
-        vectors_for_each_document.insert(0, '@attribute word_' + str(idx) + ' string')
+        # print('k_most_frequent_words[idx]', k_most_frequent_words[idx])
+        vectors_for_each_document.insert(0, '@attribute frequency_of_' + k_most_frequent_words[idx] + ' numeric')
+        # vectors_for_each_document.insert(0, '@attribute word_' + str(idx) + ' string')
         idx -= 1
     vectors_for_each_document.insert(0,
                                      '@attribute class {alt.atheism,comp.graphics,rec.autos,sci.med,talk.politics.guns}')
     vectors_for_each_document.insert(0,
-                                     '@attribute doc_id integer')
+                                     '@attribute doc_id string')
     return vectors_for_each_document
 
 
@@ -60,8 +62,8 @@ def append_arff_data_header(vectors_for_each_document):
     return vectors_for_each_document
 
 
-def append_arff_header_to_vectors_file(vectors_for_each_document):
+def append_arff_header_to_vectors_file(vectors_for_each_document, k_most_frequent_words_vector):
     vectors_for_each_document = append_arff_data_header(vectors_for_each_document)
-    vectors_for_each_document = append_arff_attributes_headers(vectors_for_each_document)
+    vectors_for_each_document = append_arff_attributes_headers(vectors_for_each_document, k_most_frequent_words_vector)
     vectors_for_each_document = append_arff_relation_header(vectors_for_each_document)
     return vectors_for_each_document

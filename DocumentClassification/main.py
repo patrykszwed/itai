@@ -12,7 +12,7 @@ vectors = get_docs_vectors(newsgroups_train)
 k_most_frequent_words_vector, dicts_by_words_count = get_k_most_frequent_words(vectors)
 vectors_for_each_document = get_vectors_for_each_document(vectors, k_most_frequent_words_vector)
 
-vectors_for_each_document = append_arff_header_to_vectors_file(vectors_for_each_document)
-save_data_to_arff(vectors_for_each_document[:20008], 'docs_vectors.arff')
+vectors_for_each_document = append_arff_header_to_vectors_file(vectors_for_each_document, k_most_frequent_words_vector)
+save_data_to_arff(vectors_for_each_document[:20015], 'docs_vectors.arff')
 
-save_data_to_arff(k_most_frequent_words_vector, 'most_frequent_words.arff')
+# save_data_to_arff(k_most_frequent_words_vector, 'most_frequent_words.arff')

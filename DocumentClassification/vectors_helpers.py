@@ -129,6 +129,13 @@ def get_most_frequent_words_for_document_category(most_frequent_words_for_each_c
 #     return vectors_for_each_document
 
 
+def get_doc_words_number(docs_words_frequencies):
+    doc_words_number = 0
+    for doc_words_frequencies in docs_words_frequencies:
+        doc_words_number += docs_words_frequencies[doc_words_frequencies]
+    return doc_words_number
+
+
 def get_vectors_for_each_document(word_vectors, most_frequent_words):
     vectors_for_each_document = []
     i = 0
@@ -137,13 +144,15 @@ def get_vectors_for_each_document(word_vectors, most_frequent_words):
         category = word_vector[1]
         vector_for_one_document = '' + str(i) + ',' + category + ','
         docs_words_frequencies = word_vector[2]
+        doc_words_number = get_doc_words_number(docs_words_frequencies)
         word_idx = 0
+        # print('doc_words_number', doc_words_number)
         while word_idx < len(most_frequent_words):
             most_frequent_word = most_frequent_words[word_idx]
             count = 0
             if most_frequent_word in docs_words_frequencies:
                 count = docs_words_frequencies[most_frequent_word]
-            vector_for_one_document += most_frequent_word + ','
+            # vector_for_one_document += most_frequent_word + ','
             vector_for_one_document += str(count) + ','
             word_idx += 2
         if vector_for_one_document[len(vector_for_one_document) - 1] == ',':
